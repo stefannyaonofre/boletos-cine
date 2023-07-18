@@ -1,20 +1,42 @@
 import React from 'react';
 import logo from '../../assets/logo.jpg';
+import user from '../../assets/user.svg';
+import './header.scss';
 
 const Header = () => {
   return (
     <>
-      <header>
-        <section className='menu'>
-          <div>
-            <img src={logo} />
-            <span>CINE COLOMBIA</span>
+      <header className="header">
+        <div className="header__logo">
+          <img src={logo} />
+          <span>CINE COLOMBIA</span>
+        </div>
+        <div className="header__buttons">
+          <button className="header__btn">Accion</button>
+          <button className="header__btn">Terror</button>
+          <button className="header__btn">Ciencia Ficción</button>
+          <button className="header__btn">Comedia</button>
+        </div>
+        <div className="header__selects">
+          <div className="header__teatros">
+            <span>Cines cercanos</span>
+            <select name="select__teatro" className="header__teatros-select">
+              <option value="teatro1">Macro plaza del Mar</option>
+            </select>
           </div>
-        </section>
-        <section className='carrusel'></section>
+          <div className="header__fecha">
+            <span>Fecha</span>
+            <select name="select__fecha" className="header__fecha-selec">
+              <option value="fecha">07 de Julio</option>
+            </select>
+          </div>
+          <figure className="header__user">
+            <img src={user} />
+          </figure>
+        </div>
       </header>
     </>
-  )
+  );
 }
 
 export default Header
