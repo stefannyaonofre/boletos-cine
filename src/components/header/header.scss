@@ -1,0 +1,77 @@
+@import '../../styles/variables.scss';
+
+.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $color-secondary;
+    color: $color-primary;
+    padding: 20px 0 20px 20px;
+
+    &__logo {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    &__buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__btn {
+        background-color: $color-blue;
+        color: $color-primary;
+        border-radius: 15px;
+        border: none;
+        padding: 5px 15px;
+    }
+
+    &__selects {
+        display: flex;
+        gap: 13px;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    &__teatros {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        &-select{
+            color: $color-primary;
+            background-color: $color-secondary;
+            padding: 5px 35px 5px 0;
+            border-radius: 10px;
+        }
+    }
+
+    &__fecha {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        &-selec{
+            color: $color-primary;
+            background-color: $color-secondary;
+            padding: 5px 50px 5px 0;
+            border-radius: 10px;
+        }
+    }
+
+    &__user {
+        display: flex;
+        background-color: $color-blue;
+        border-radius: 18px;
+        padding: 8px;
+        
+
+        img {
+            width: 15px;
+            height: auto;
+        }
+    }
+}
