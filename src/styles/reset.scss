@@ -1,8 +1,8 @@
-html {
-    box-sizing: border-box;
-  }
-  *, *:before, *:after {
-    box-sizing: inherit;
-    padding: 0;
-    margin: 0;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Alata&family=Josefin+Sans:wght@100&family=Montserrat:wght@100&family=Open+Sans:ital@1&family=Roboto:ital,wght@0,100;1,300&display=swap");
+* {
+  font-family: "Alata", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}

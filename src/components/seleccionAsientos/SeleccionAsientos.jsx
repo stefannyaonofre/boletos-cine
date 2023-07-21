@@ -1,9 +1,12 @@
-import React from 'react'
-
+import React from "react";
+import "./seleccionAsientos.scss";
 const SeleccionAsientos = () => {
-  return (
-    <div>SeleccionAsientos</div>
-  )
-}
 
-export default SeleccionAsientos
+  return (
+    <div>
+      
+    </div>
+  );
+};
+
+export default SeleccionAsientos;
