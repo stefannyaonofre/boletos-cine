@@ -1,0 +1,118 @@
+@import "../../styles/style.scss";
+.container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      .div {
+        // display: flex;
+        // flex-direction: row;
+        // gap: 20px;
+        // align-items: center;
+        // justify-content: space-between;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        span {
+          flex: 1; /* Hace que el texto ocupe el espacio disponible */
+        }
+        .number {
+          text-align: center;
+        }
+        button {
+          width: 48px;
+          height: 48px;
+          padding: 0 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: #565d6dff; /* neutral-600 */
+          background: #f3f4f6ff; /* neutral-200 */
+          opacity: 1;
+          border: none;
+          border-radius: 6px; /* border-m */
+          gap: 0px;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .infpel {
+      display: flex;
+      gap: 20px;
+      figure {
+        width: 100px;
+        height: 150px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      .deta {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+   
+    .activeButton{
+      display: flex;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 500;
+      color: $color-primary;
+      background: $color-blue;
+      opacity: 1;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      :hover {
+        color: $color-primary;
+        background: rgb(16, 24, 183);
+      }
+
+    }
+    .inactiveButton{
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 500;
+        color: $color-primary;
+        background: $color-gray;
+        opacity: 1;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        :hover {
+          color: $color-primary;
+          background: rgb(16, 24, 183);
+        }
+        
+      }
+  }
+}
