@@ -9,18 +9,13 @@ const Header = () => {
   const [dataCinemas, setDataCinemas] = useState([]);
 
   useEffect(() => {
-    
     consultCinemas();
-    console.log(dataCinemas)
-    
   },[])
 
   const consultCinemas = async() => {
     const cinema = await getCinemas();
     setDataCinemas(cinema);
   };
-  
-  
 
   return (
     <>
