@@ -1,10 +1,11 @@
+@import "../../styles/style.scss";
 .login {
   position: absolute;
   top: 100px;
   left: 400px;
   width: 514px;
   height: 538px;
-  background: #ffffffff; /* white */
+  background: $color-primary;
   border-radius: 6px; /* border-m */
   box-shadow: 0px 0px 1px #171a1f, 0px 0px 2px #171a1f;
 
@@ -23,7 +24,7 @@
     align-items: center;
     justify-content: center;
     color: #565d6dff; /* neutral-600 */
-    background: #f3f4f6ff; /* neutral-200 */
+    background: #f3f4f6ff;
     opacity: 1;
     border: none;
     border-radius: 22px;
@@ -34,17 +35,17 @@
       fill: #565d6dff; /* neutral-600 */
     }
     &:hover {
-        color: #565D6DFF; /* neutral-600 */
-        background: #DEE1E6FF; /* neutral-300 */
-        cursor: pointer;
-        &:active {
-            color: #565D6DFF; /* neutral-600 */
-            background: #CFD2DAFF; /* neutral-350 */
-          }
+      color: #565d6dff; /* neutral-600 */
+      background: #dee1e6ff; /* neutral-300 */
+      cursor: pointer;
+      &:active {
+        color: #565d6dff; /* neutral-600 */
+        background: #cfd2daff; /* neutral-350 */
       }
-      &:disabled {
-        opacity: 0.4; 
-      }
+    }
+    &:disabled {
+      opacity: 0.4;
+    }
   }
   &__text {
     & h1 {
@@ -54,13 +55,13 @@
       font-family: Roboto; /* Body */
       font-size: 48px;
       line-height: 68px;
-      color: #171a1fff; /* neutral-900 */
+      color: $color-secondary; /* neutral-900 */
     }
     & h3 {
       position: absolute;
       top: 117px;
       left: 196px;
-      font-family: Roboto; /* Body */
+
       font-size: 18px;
       line-height: 28px;
       color: #9095a1ff; /* neutral-500 */
@@ -76,7 +77,7 @@
       height: 29px;
       padding-left: 0px;
       padding-right: 12px;
-      font-family: Roboto; /* Body */
+
       font-size: 14px;
       background: #00000000; /* transparent */
       border-top-left-radius: 6px;
@@ -100,6 +101,8 @@
   }
 
   &__password {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 256px;
     left: 96px;
@@ -109,7 +112,7 @@
       height: 29px;
       padding-left: 0px;
       padding-right: 34px;
-      font-family: Roboto; /* Body */
+
       font-size: 14px;
       background: #00000000; /* transparent */
       border-top-left-radius: 6px;
@@ -132,8 +135,8 @@
     }
     .img {
       position: absolute;
-      top: 20px;
-      right: 60px;
+      top: 28px;
+      right: 0;
       width: 16px;
       height: 16px;
       fill: #171a1fff;
@@ -152,7 +155,6 @@
     position: absolute;
     top: 332px;
     left: 96px;
-    font-family: Roboto; /* Body */
     font-size: 14px;
     line-height: 22px;
     opacity: 1;
@@ -184,21 +186,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Roboto; /* Body */
+
     font-size: 16px;
     line-height: 26px;
-    color: #ffffffff; /* white */
+    color: $color-primary; /* white */
     background: #19508aff; /* primary-500 */
     opacity: 1;
     border: none;
     border-radius: 6px; /* border-m */
     box-shadow: 0px 8px 17px #19508a, 0px 0px 2px #19508a; /* shadow-l */
     &:hover {
-      color: #ffffffff; /* white */
+      color:$color-primary; /* white */
       background: #154273ff; /* primary-600 */
       cursor: pointer;
       &:active {
-        color: #ffffffff; /* white */
+        color: $color-primary; /* white */
         background: #11355cff; /* primary-700 */
       }
     }
