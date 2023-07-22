@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import "./seleccionBoletos.scss";
-const SeleccionBoletos = ({ adulto, setAdulto, niño, setNiño, terceraEdad,setTerceraEdad }) => {
+const SeleccionBoletos = () => {
+  const [adulto, setAdulto] = useState(0);
+  const [niño, setNiño] = useState(0);
+  const [terceraEdad, setTerceraEdad] = useState(0);
+  
   const valorBoleto = 10000;
   const [botonActivo, setBotonActivo] = useState(false); //bandera para el boton continuar
   const handlePlus = (type) => {
