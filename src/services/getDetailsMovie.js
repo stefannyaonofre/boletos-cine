@@ -14,7 +14,8 @@ export const getDetailsMovie = async (id) => {
             premiere: data.release_date,
             runtime: data.runtime,
             adult: data.adult,
-            gender: data.genres.map(item => item.name)
+            gender: data.genres.map(item => item.name),
+            overview: data.overview
         }
         return newMovie;
         

@@ -3,26 +3,20 @@
 .card__carrusel {
     display: flex;
     position: relative;
-    width: 350px;
-    height: 450px;
     margin: 0;
     padding: 0;
     align-items: center;
-    justify-content: center;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
 
     &__figure {
-        width: 300px;
-        height: 400px;
+        width: 293px;
+        height: 420px;
 
         img {
             width: 100%;
             height: 100%;
             border-radius: 7px;
+            object-fit: cover;
+            filter: brightness(0.5);
         }
     }
 
@@ -31,11 +25,24 @@
         flex-direction: column;
         position: absolute;
         color: $color-primary;
-        align-items: center;
         text-align: center;
-        top: 40%;
-        left: 45px;
-        width: 250px;
+        top: 60%;
+        left: 50%;
+        right: 15px;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        padding: 10px;
+        border-radius: 7px;
 
+        h2 {
+            margin: 0 0 5px;
+            font-weight: bold;
+        }
+
+        span {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
     }
 }

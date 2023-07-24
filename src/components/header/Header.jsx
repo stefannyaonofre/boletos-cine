@@ -4,7 +4,7 @@ import user from '../../assets/user.svg';
 import './header.scss';
 import { getCinemas } from '../../services/getCinemas';
 
-const Header = () => {
+const Header = ({setGenders}) => {
 
   const [dataCinemas, setDataCinemas] = useState([]);
 
@@ -17,6 +17,11 @@ const Header = () => {
     setDataCinemas(cinema);
   };
 
+  const handleSubmit = (gender) => {
+    setGenders(gender);
+  }
+
+
   return (
     <>
       <header className="header">
@@ -25,10 +30,10 @@ const Header = () => {
           <span>CINE COLOMBIA</span>
         </div>
         <div className="header__buttons">
-          <button className="header__btn">Accion</button>
-          <button className="header__btn">Terror</button>
-          <button className="header__btn">Ciencia Ficción</button>
-          <button className="header__btn">Comedia</button>
+          <button className="header__btn" onClick={()=> handleSubmit('Acción')}>Accion</button>
+          <button className="header__btn" onClick={()=> handleSubmit('Terror')}>Terror</button>
+          <button className="header__btn" onClick={()=> handleSubmit('Ciencia ficción')}>Ciencia Ficción</button>
+          <button className="header__btn" onClick={()=> handleSubmit('Comedia')}>Comedia</button>
         </div>
         <div className="header__selects">
           <div className="header__teatros">
