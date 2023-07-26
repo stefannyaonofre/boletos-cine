@@ -5,6 +5,7 @@ import PublicRouter from './PublicRouter.jsx'
 import Cartelera from '../components/cartelera/Cartelera.jsx'
 import Admin from '../components/admin/Admin.jsx'
 import PrivateRouter from './PrivateRouter.jsx'
+import DetallePelicula from '../components/detallePelicula/DetallePelicula.jsx'
 
 const Router = () => {
     const [isLogin, setIsLogin] = useState(false);
@@ -15,9 +16,8 @@ const Router = () => {
                 <Route path='/'>
                     <Route element={<PublicRouter isAutenticate={isLogin}/>}>
                         <Route path='home' element={<Home setGenders={setGenders}/>}>
-                            <Route index element={<Cartelera genders={genders}/>}>
-                                
-                            </Route>
+                            <Route index element={<Cartelera genders={genders}/>}/>
+                            <Route path='detalle' element={<DetallePelicula />}/>
                         </Route>
                     </Route>
                     <Route element={<PrivateRouter isAutenticate={isLogin}/>}>
