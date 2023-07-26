@@ -1,0 +1,148 @@
+@import "../../styles/style.scss";
+.chair {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .row-labels{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-left: 40px;
+      margin-right: 55px;
+      }
+    .columChair {
+      display: flex;
+      .column-labels{
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        justify-content: space-around;
+      }
+      .sillas {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 10px;
+      }
+    }
+
+    .tipos {
+      figure {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-evenly;
+        .sele {
+          color: rgb(255, 238, 0); // Color para el icono de Seleccionado
+          font-size: 24px;
+          margin-right: 5px;
+        }
+
+        .ocu {
+          color: rgb(255, 13, 0); // Color para el icono de Ocupado
+          font-size: 24px;
+          margin-right: 5px;
+        }
+
+        .dis {
+          color: rgb(4, 4, 253); // Color para el icono de Disponible
+          font-size: 24px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .infpel {
+      display: flex;
+      gap: 20px;
+      figure {
+        width: 100px;
+        height: 150px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      .deta {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    Button {
+      display: flex;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 500;
+      color: $color-primary;
+      background: $color-blue;
+      opacity: 1;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      :hover {
+        color: $color-primary;
+        background: rgb(16, 24, 183);
+      }
+    }
+    // .activeButton{
+    //   display: flex;
+    //   height: 35px;
+    //   align-items: center;
+    //   justify-content: center;
+    //   padding-left: 15px;
+    //   padding-right: 15px;
+    //   font-size: 14px;
+    //   line-height: 26px;
+    //   font-weight: 500;
+    //   color: $color-primary;
+    //   background: $color-blue;
+    //   opacity: 1;
+    //   border: none;
+    //   border-radius: 20px;
+    //   cursor: pointer;
+    //   :hover {
+    //     color: $color-primary;
+    //     background: rgb(16, 24, 183);
+    //   }
+
+    // }
+    // .inactiveButton{
+    //     display: flex;
+    //     height: 35px;
+    //     align-items: center;
+    //     justify-content: center;
+    //     padding-left: 15px;
+    //     padding-right: 15px;
+    //     font-size: 14px;
+    //     line-height: 26px;
+    //     font-weight: 500;
+    //     color: $color-primary;
+    //     background: $color-gray;
+    //     opacity: 1;
+    //     border: none;
+    //     border-radius: 20px;
+    //     cursor: pointer;
+    //     :hover {
+    //       color: $color-primary;
+    //       background: rgb(16, 24, 183);
+    //     }
+
+    //   }
+  }
+}
