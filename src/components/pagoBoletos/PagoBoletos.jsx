@@ -72,11 +72,11 @@ const PagoBoletos = () => {
     }
   };
   return (
-    <div className="container">
-      <div className="container__left">
+    <div className="containerPago">
+      <div className="containerPago__left">
         <h1>Información personal</h1>
         <span>Completa los datos del formulario para realizar el pago.</span>
-        <div className="container__left-info">
+        <div className="containerPago__left-info">
           <div className="datos">
             <label>Correo electrónico</label>
             <input
@@ -142,7 +142,7 @@ const PagoBoletos = () => {
         </div>
       </div>
 
-      <div className="container__right">
+      <div className="containerPago__right">
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>

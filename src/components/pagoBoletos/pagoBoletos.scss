@@ -1,9 +1,13 @@
 @import "../../styles/style.scss";
 
-.container {
+.containerPago {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
   &__left {
     display: flex;
-
+    flex-direction: column;
     &-info {
       display: flex;
       flex-direction: column;

@@ -8,6 +8,9 @@ import SeleccionBoletos from "../seleccionBoletos/SeleccionBoletos.jsx";
 import Carrusel from "../carrusel/Carrusel.jsx";
 import Cartelera from "../cartelera/Cartelera.jsx";
 import { Outlet } from "react-router-dom";
+import PagoBoletos from "../pagoBoletos/PagoBoletos.jsx";
+import TransaccionExitosa from "../transaccionExitosa/TransaccionExitosa.jsx";
+import DescargaBoletos from "../descargaBoletos/DescargaBoletos.jsx";
 const Home = ({setGenders}) => {
   const [adulto, setAdulto] = useState(0);
   const [niño, setNiño] = useState(0);
@@ -20,16 +23,13 @@ const Home = ({setGenders}) => {
       {/* <Cartelera genders={genders}/> */}
       {/* <Login/> */}
       {/* <DetallePelicula/> */}
-      {/* <SeleccionBoletos
-        adulto={adulto}
-        setAdulto={setAdulto}
-        niño={niño}
-        setNiño={setNiño}
-        terceraEdad={terceraEdad}
-        setTerceraEdad={setTerceraEdad}
-      /> */}
+      
       {/* <SeleccionAsientos/> */}
       <Outlet/>
+      {/* <SeleccionBoletos/>
+      <PagoBoletos/>
+      <TransaccionExitosa/>
+      <DescargaBoletos/> */}
     </div>
   );
 };
