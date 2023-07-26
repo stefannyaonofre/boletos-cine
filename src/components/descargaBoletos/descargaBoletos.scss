@@ -1,0 +1,57 @@
+@import "../../styles/style.scss";
+.containerPago{
+    background-color: $color-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px;
+    width: 400px;
+    height: 500px;
+    margin: 0 auto; 
+    margin-bottom: 10px;
+    gap: 20px;
+    overflow: hidden;
+    color: $color-primary;
+    border-radius: 8px;
+    .infpel {
+      display: flex;
+      gap: 20px;
+      figure {
+        width: 100px;
+        height: 150px;
+        overflow: hidden;
+        img {
+          width: 100%;
+          height: auto;
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+      .deta {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    Button {
+      display: flex;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 500;
+      color: $color-primary;
+      background: $color-blue;
+      opacity: 1;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      :hover {
+        color: $color-primary;
+        background: rgb(16, 24, 183);
+      }
+    }
+}
