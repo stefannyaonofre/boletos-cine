@@ -1,4 +1,4 @@
-const URL_API_JSON = "http://localhost:5000/";
+const URL_API_JSON = "https://miniback-boletos-cine.onrender.com/";
 const URL_API_MOVIES = "https://api.themoviedb.org/3/movie/now_playing";
 const URL_API_MOVIE = "https://api.themoviedb.org/3/movie/";
 const API_KEY="d539189f15b232683c9d1f3bd35b25ba";

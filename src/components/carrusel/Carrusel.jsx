@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation, Autoplay } from "swiper/modules";
+import "swiper/scss";
+import "swiper/css/effect-coverflow";
 import { getMovies } from "../../services/getMovies";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import "./carrusel.scss";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
-import { EffectCoverflow } from "swiper/modules";
 import CardCarrusel from "../cardCarrusel/CardCarrusel";
 
 const Carrusel = () => {
@@ -24,10 +25,6 @@ const Carrusel = () => {
     setListMovies(list);
   };
 
-  const detailMovie = () => {
-    console.log(listMovies);
-  };
-
   return (
     <div className="container">
       <div className="swiperContainer">
@@ -35,6 +32,10 @@ const Carrusel = () => {
           effect={"coverflow"}
           grabCursor={true}
           centeredSlides={true}
+          autoplay={{
+            delay: 2000,
+            disableOnInteraction: false,
+          }}
           loop={true}
           slidesPerView={"auto"}
           coverflowEffect={{
@@ -43,8 +44,9 @@ const Carrusel = () => {
             depth: 100,
             modifier: 2.5,
           }}
-          modules={[EffectCoverflow]}
+          modules={[EffectCoverflow, Navigation, Autoplay]}
           className="swiper_container"
+          loopedSlides={listMovies.length}
         >
           {listMovies.map((data) => (
             <SwiperSlide key={data.id}>

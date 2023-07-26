@@ -6,23 +6,30 @@ import DetallePelicula from "../detallePelicula/DetallePelicula.jsx";
 import SeleccionAsientos from "../seleccionAsientos/SeleccionAsientos.jsx";
 import SeleccionBoletos from "../seleccionBoletos/SeleccionBoletos.jsx";
 import Carrusel from "../carrusel/Carrusel.jsx";
-import PagoBoletos from "../pagoBoletos/PagoBoletos.jsx";
-import TransaccionExitosa from "../transaccionExitosa/TransaccionExitosa.jsx";
-import DescargaBoletos from "../descargaBoletos/DescargaBoletos.jsx";
-const Home = () => {
-
+import Cartelera from "../cartelera/Cartelera.jsx";
+import { Outlet } from "react-router-dom";
+const Home = ({setGenders}) => {
+  const [adulto, setAdulto] = useState(0);
+  const [niño, setNiño] = useState(0);
+  const [terceraEdad, setTerceraEdad] = useState(0);
 
   return (
     <div>
-      <Header/>
-      <Carrusel/>
+      <Header setGenders={setGenders} />
+      <Carrusel />
+      {/* <Cartelera genders={genders}/> */}
       {/* <Login/> */}
       {/* <DetallePelicula/> */}
-      {/* <SeleccionBoletos/> */}
+      {/* <SeleccionBoletos
+        adulto={adulto}
+        setAdulto={setAdulto}
+        niño={niño}
+        setNiño={setNiño}
+        terceraEdad={terceraEdad}
+        setTerceraEdad={setTerceraEdad}
+      /> */}
       {/* <SeleccionAsientos/> */}
-      {/* <PagoBoletos/> */}
-      {/* <TransaccionExitosa/> */}
-      <DescargaBoletos/>
+      <Outlet/>
     </div>
   );
 };

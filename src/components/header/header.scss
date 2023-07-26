@@ -29,6 +29,10 @@
         padding: 5px 15px;
     }
 
+    &__btn:hover {
+        cursor: pointer;
+    }
+
     &__selects {
         display: flex;
         gap: 13px;

@@ -1,5 +1,47 @@
 @import '../../styles/variables.scss';
 
-.swiper_container{
-    gap: 0;
+.container {
+    padding: 0;
+    margin: 0 auto;
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0) 50%, transparent);
 }
+
+.swiperContainer{
+    overflow: hidden;
+}
+
+.swiper_container {
+    height: 400px;
+    padding: 2rem 0;
+    border-radius: 5px;
+}
+
+.swiper-slide {
+    width: 300px;
+    height: 400px;
+}
+
+//   @media (max-width: 500px) {
+//     .swiper_container {
+//       height: 47rem;
+//     }
+//     .swiper-slide {
+//       width: 23rem !important;
+//       height: auto !important;
+//     }
+//     .swiper-slide img {
+//       width: 23rem !important;
+//       height: auto !important;
+//     }
+//   }
+
+//   .swiper-slide img {
+//     width: 23rem;
+//     height: auto;
+//     object-fit: cover;
+//   }
+
+//   .swiper-slide-shadow-left,
+//   .swiper-slide-shadow-right {
+//     display: none;
+//   }

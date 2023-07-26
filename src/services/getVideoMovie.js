@@ -5,11 +5,12 @@ export const getVideoMovie = async (id) => {
 
     try {
         const urlVideo = endpoints.urlVideo(id);
-        const video = await axios.get(urlVideo);
+        const { data } = await axios.get(urlVideo);
+        const video = data.result.find((item) => item.type.toLowerCase().includes('trailer'));
         return video;
 
     } catch (error) {
         console.log(error);
-        return []
+        return null;
     }
 }
