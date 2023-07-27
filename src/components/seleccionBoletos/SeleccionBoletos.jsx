@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import "./seleccionBoletos.scss";
 const SeleccionBoletos = () => {
-  const [adulto, setAdulto] = useState(0);
-  const [niño, setNiño] = useState(0);
-  const [terceraEdad, setTerceraEdad] = useState(0);
+  const [publico, setPublico] = useState(0);
+  const [mayorEdad, setMayorEdad] = useState(0);
   
   const valorBoleto = 10000;
   const [botonActivo, setBotonActivo] = useState(false); //bandera para el boton continuar
   const handlePlus = (type) => {
     switch (type) {
-      case "ADULTO":
-        setAdulto((prevValue) => (prevValue < 10 ? prevValue + 1 : prevValue));
+      case "PUBLICO":
+        setPublico((prevValue) => (prevValue < 10 ? prevValue + 1 : prevValue));
         break;
-      case "NIÑO":
-        setNiño((prevValue) => (prevValue < 10 ? prevValue + 1 : prevValue));
-        break;
-      case "TERCERA_EDAD":
-        setTerceraEdad((prevValue) =>
-          prevValue < 10 ? prevValue + 1 : prevValue
-        );
+      case "MAYOR":
+        setMayorEdad((prevValue) => (prevValue < 10 ? prevValue + 1 : prevValue));
         break;
       default:
         break;
@@ -26,86 +20,64 @@ const SeleccionBoletos = () => {
   };
   const handleMinus = (type) => {
     switch (type) {
-      case "ADULTO":
-        setAdulto((prevValue) => (prevValue > 0 ? prevValue - 1 : 0));
+      case "PUBLICO":
+        setPublico((prevValue) => (prevValue > 0 ? prevValue - 1 : 0));
         break;
-      case "NIÑO":
-        setNiño((prevValue) => (prevValue > 0 ? prevValue - 1 : 0));
-        break;
-      case "TERCERA_EDAD":
-        setTerceraEdad((prevValue) => (prevValue > 0 ? prevValue - 1 : 0));
+      case "MAYOR":
+        setMayorEdad((prevValue) => (prevValue > 0 ? prevValue - 1 : 0));
         break;
       default:
         break;
     }
   };
-  const totalAdulto = adulto * valorBoleto;
-  const totalNiño = niño * valorBoleto;
-  const totalTerceraEdad = terceraEdad * valorBoleto;
-  const totalBoletos = totalAdulto + totalNiño + totalTerceraEdad;
+  const totalPublico = publico * valorBoleto;
+  const totalMayor = mayorEdad * valorBoleto;
+  const totalBoletos = totalPublico + totalMayor;
   //--------------
   useEffect(() => {
     // Verificar si al menos uno de los contadores es mayor que cero
-    if (adulto > 0 || niño > 0 || terceraEdad > 0) {
+    if (publico > 0 || mayorEdad > 0) {
       setBotonActivo(true); // Si es así, activar el botón
     } else {
       setBotonActivo(false); // Si todos los contadores están en cero, desactivar el botón
     }
-  }, [adulto, niño, terceraEdad]);
+  }, [publico, mayorEdad]);
   return (
-    <div className="container">
-    <div className="container__left">
+    <div className="containerBoleto">
+    <div className="containerBoleto__left">
       <h1>Selecciona tus boletos</h1>
       <span>Puedes comprar 10 boletos máximo por transacción</span>
-      <div className="container__left-buttons">
+      <div className="containerBoleto__left-buttons">
         <div className="div">
-          <span>ADULTO</span>
+          <span>Para todo público</span>
           <button
             className="buttonMinus"
-            onClick={() => handleMinus("ADULTO")}
+            onClick={() => handleMinus("PUBLICO")}
           >
             -
           </button>
-          <span className="number">{adulto}</span>
-          <button className="buttonPlus" onClick={() => handlePlus("ADULTO")}>
+          <span className="number">{publico}</span>
+          <button className="buttonPlus" onClick={() => handlePlus("PUBLICO")}>
             +
           </button>
-          ${totalAdulto}
+          ${totalPublico}
         </div>
 
         <div className="div">
-          <span>NIÑO</span>
-          <button className="buttonMinus" onClick={() => handleMinus("NIÑO")}>
+          <span>Para mayores de edad</span>
+          <button className="buttonMinus" onClick={() => handleMinus("MAYOR")}>
             -
           </button>
-          <span className="number">{niño}</span>
-          <button className="buttonPlus" onClick={() => handlePlus("NIÑO")}>
+          <span className="number">{mayorEdad}</span>
+          <button className="buttonPlus" onClick={() => handlePlus("MAYOR")}>
             +
           </button>
-          ${totalNiño}
-        </div>
-
-        <div className="div">
-          <span>TERCERA EDAD</span>
-          <button
-            className="buttonMinus"
-            onClick={() => handleMinus("TERCERA_EDAD")}
-          >
-            -
-          </button>
-          <span className="number">{terceraEdad}</span>
-          <button
-            className="buttonPlus"
-            onClick={() => handlePlus("TERCERA_EDAD")}
-          >
-            +
-          </button>
-          ${totalTerceraEdad}
+          ${totalMayor}
         </div>
       </div>
     </div>
 
-    <div className="container__right">
+    <div className="containerBoleto__right">
       <h1>Resumen de compra</h1>
       <div className="infpel">
         <figure>

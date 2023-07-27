@@ -3,8 +3,8 @@ import { BsCheckCircle } from "react-icons/bs";
 import "./transaccionExitosa.scss";
 const TransaccionExitosa = () => {
   return (
-    <div className="container">
-      <div className="container__up">
+    <div className="containerTransaccion">
+      <div className="containerTransaccion__up">
         <div className="transaccion">
           <BsCheckCircle />
           <span>¡Transacción exitosa!</span>
@@ -33,7 +33,7 @@ const TransaccionExitosa = () => {
           </div>
         </div>
       </div>
-      <div className="container__down">
+      <div className="containerTransaccion__down">
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>

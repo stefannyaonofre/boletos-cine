@@ -1,9 +1,10 @@
 @import "../../styles/style.scss";
 
-.container {
+.containerTransaccion {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    margin: 20px;
   &__up {
     display: flex;
     flex-direction: column;
