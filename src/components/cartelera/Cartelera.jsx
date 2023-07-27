@@ -2,10 +2,15 @@ import React, { useEffect, useState } from "react";
 import { getMovies } from "../../services/getMovies";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import "./cartelera.scss";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "../../routes/Router";
 
 const Cartelera = ({genders}) => {
   const [moviesList, setMoviesList] = useState([]);
   const list = [];
+  const navigate = useNavigate();
+  const { setMovieDetail } = useContext(AppContext);
 
   useEffect(() => {
     movies();
@@ -14,7 +19,6 @@ const Cartelera = ({genders}) => {
 
   const movies = async () => {
     const data = await getMovies();
-
     for (let i = 0; i < data.length; i++) {
       const listId = await getDetailsMovie(data[i].id);
       list.push(listId);
@@ -27,13 +31,19 @@ const Cartelera = ({genders}) => {
     }
   };
 
+  const handleDetail = (movie) => {
+    console.log(movie);
+    setMovieDetail(movie);
+    navigate('detalle')
+  }
+
   return (
     <>
       <section>
         <h3>EN CARTELERA</h3>
         <article className="article__cartelera">
           {moviesList.map((movie) => (
-            <div className="cartelera" id={movie.id} key={movie.id}>
+            <div className="cartelera" id={movie.id} key={movie.id} onClick={() => (handleDetail (movie))}>
               <figure className="cartelera__figure">
                 <img src={movie.image} />
               </figure>
