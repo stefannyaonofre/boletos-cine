@@ -11,23 +11,25 @@ import { createContext } from "react";
 export const AppContext = createContext({});
 
 const Router = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [genders, setGenders] = useState("");
-  const [movieDetail, setMovieDetail] = useState();
+  const [ isLogin, setIsLogin ] = useState(false);
+  const [ genders, setGenders ] = useState("");
+  const [ movieDetail, setMovieDetail ] = useState();
+  const [ seleccionTeatro, setSeleccionTeatro ] = useState();
+  const [ seleccionFecha, setSeleccionFecha ] = useState();
 
   return (
-    <AppContext.Provider value={{movieDetail, setMovieDetail}}>
+    <AppContext.Provider value={{movieDetail, setMovieDetail, seleccionTeatro, setSeleccionTeatro, seleccionFecha, setSeleccionFecha}}>
       <BrowserRouter>
         <Routes>
           <Route path="/">
             <Route element={<PublicRouter isAutenticate={isLogin} />}>
-              <Route path="home" element={<Home setGenders={setGenders} />}>
+              <Route element={<Home setGenders={setGenders} />}>
                 <Route index element={<Cartelera genders={genders} />} />
-                <Route path="detalle" element={<DetallePelicula />} />
+                <Route path="detalle/:idMovie" element={<DetallePelicula />} />
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
-              <Route index element={<Admin signIn={setIsLogin} />} />
+              <Route path="admin" element={<Admin signIn={setIsLogin} />} />
             </Route>
           </Route>
         </Routes>

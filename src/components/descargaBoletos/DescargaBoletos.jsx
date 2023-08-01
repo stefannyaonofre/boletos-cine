@@ -4,7 +4,7 @@ import QRCode from "react-qr-code";
 
 const DescargaBoletos = () => {
   return (
-    <div className='containerPago'>
+    <div className='containerQr'>
       <h1>Boletos</h1>
         <div className="infpel">
           <figure>
