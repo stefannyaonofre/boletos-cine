@@ -17,6 +17,7 @@ const DetallePelicula = () => {
   const { idMovie } = useParams();
   const { getInfo } = useSessionStorage();
   const teatroFecha = getInfo(key);
+  const [botonActivo, setBotonActivo] = useState(null);
 
   useEffect(() => {
     detailMovie();
@@ -31,7 +32,10 @@ const DetallePelicula = () => {
     const detail = await getDetailsMovie(idMovie);
     setMovie(detail);
   };
-
+  
+  const handleClick = (index) =>{
+    setBotonActivo(index === botonActivo ? null : index);
+  }
   return (
     <section className="details">
       <article className="details__start">
@@ -56,18 +60,34 @@ const DetallePelicula = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="details__start-info">
-          <h1>Horarios disponibles: {teatroFecha.teatro}</h1>
-          <span>Elige el horario que prefieras</span>
-          <span>{teatroFecha.fecha}</span>
-          <div className="buttons">
-            <button>18:00</button>
-            <button>19:00</button>
-            <button>21:30</button>
-          </div>
-          <button className="bol">Seleccionar boletos</button>
+      <div className='details__start-info'>
+        <h1>Horarios disponibles: 07 de julio</h1>
+        <span>Elige el horario que prefieras</span>
+        <span>Marco plaza del mar</span>
+        <div className='buttons'>
+          <button 
+          onClick={() => handleClick(0)}
+          className={botonActivo === 0 ? 'activeButton' : 'inactiveButton'}
+
+          >18:00</button>
+          <button 
+          onClick={() => handleClick(1)}
+          className={botonActivo === 1 ? 'activeButton' : 'inactiveButton'}
+
+          >19:00</button>
+          <button 
+          onClick={() => handleClick(2)}
+          className={botonActivo === 2 ? 'activeButton' : 'inactiveButton'}
+
+          >21:30</button>
         </div>
+        <button 
+        
+        className={botonActivo !== null ? 'activeButton' : 'inactiveButton'}
+        >Seleccionar boletos</button>
+      </div>
       </article>
 
       <article className="details__end">

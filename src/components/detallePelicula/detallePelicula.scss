@@ -1,4 +1,4 @@
-@import '../../styles/style.scss';
+@import "../../styles/style.scss";
 .details {
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
     margin-top: 20px;
     margin-right: 80px;
     margin-left: 50px;
-    
+
     &-movie {
       display: flex;
       flex-direction: row;
@@ -35,34 +35,35 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
-        span{
+        span {
           font-weight: 100;
-          
         }
         .buttons {
           display: flex;
           flex-direction: row;
           gap: 10px;
-          
-          button{
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 14px; 
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 14px;
             line-height: 26px;
             font-weight: 500;
             padding: 10px 13px;
 
-            color: $color-primary; 
+            color: $color-primary;
             background: $color-blue;
-            opacity: 1; 
-            border: none; 
-            border-radius: 8px;
+            opacity: 1;
+            border: none;
+            border-radius: 6px;
             cursor: pointer;
             :hover {
-                color: $color-primary; 
-                background: rgb(16, 24, 183); 
-              }
+              color: $color-primary;
+              background: rgb(16, 24, 183);
+            }
           }
         }
       }
@@ -76,30 +77,90 @@
         display: flex;
         flex-direction: row;
         gap: 10px;
-        button {
-            border: 1px solid $color-secondary; 
-            color: $color-secondary;
-            background-color: transparent; 
-            border-radius: 8px;
-            padding: 5px 10px;
-            cursor: pointer;
-            &:focus,
-            &:hover {
-              background-color: gray; 
-              color: $color-primary; 
-            }
+        .activeButton {
+          display: flex;
+          height: 35px;
+          align-items: center;
+          justify-content: center;
+          padding-left: 15px;
+          padding-right: 15px;
+          font-size: 14px;
+          line-height: 26px;
+          font-weight: 500;
+          color: $color-primary;
+          background: $color-gray-strong;
+          opacity: 1;
+          border: solid black 1px;
+          border-radius: 8px;
+          cursor: pointer;
+          :hover {
+            color: $color-primary;
+            background: $color-gray;
           }
+        }
+        .inactiveButton {
+          display: flex;
+          height: 35px;
+          align-items: center;
+          justify-content: center;
+          padding-left: 15px;
+          padding-right: 15px;
+          font-size: 14px;
+          line-height: 26px;
+          font-weight: 500;
+          color: $color-secondary;
+          background: $color-gray;
+          opacity: 1;
+          border: solid black 1px;
+          border-radius: 8px;
+          cursor: pointer;
+          :hover {
+            color: $color-primary;
+            background: $color-gray;
+          }
+        }
       }
-      .bol{
-        background:$color-blue; 
-        border-radius: 28px; 
-        box-shadow: 0px 0px 1px $color-secondary, 0px 0px 2px $color-secondary;
-        font-size: 16px; 
-        line-height: 26px; 
-        color:$color-primary;
-        padding: 6px 12px;
+      .activeButton {
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 500;
+        color: $color-primary;
+        background: $color-blue;
+        opacity: 1;
         border: none;
+        border-radius: 20px;
         cursor: pointer;
+        :hover {
+          color: $color-primary;
+          background: rgb(16, 24, 183);
+        }
+      }
+      .inactiveButton {
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 500;
+        color: $color-primary;
+        background: $color-gray;
+        opacity: 1;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        :hover {
+          color: $color-primary;
+          background: rgb(16, 24, 183);
+        }
       }
     }
   }
@@ -121,11 +182,11 @@
         max-height: 100%;
       }
     }
-    h2{
+    h2 {
       font-weight: bold;
     }
-    p{
-      font-weight:100;
+    p {
+      font-weight: 100;
     }
   }
 }

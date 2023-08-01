@@ -6,6 +6,9 @@ import { Outlet } from "react-router-dom";
 import PagoBoletos from "../pagoBoletos/PagoBoletos.jsx";
 import TransaccionExitosa from "../transaccionExitosa/TransaccionExitosa.jsx";
 import DescargaBoletos from "../descargaBoletos/DescargaBoletos.jsx";
+import PanelAdmin from "../panelAdmin/PanelAdmin.jsx";
+import Admin from "../admin/Admin.jsx";
+
 const Home = ({setGenders}) => {
 
   return (
@@ -17,6 +20,7 @@ const Home = ({setGenders}) => {
      
     </div>
   );
+
 };
 
 export default Home;
