@@ -1,6 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './detallePelicula.scss';
 const DetallePelicula = () => {
+  //cuando ningun boton este activo = null y activo = indice
+  const [botonActivo, setBotonActivo] = useState(null);
+  const handleClick = (index) =>{
+    setBotonActivo(index === botonActivo ? null : index);
+  
+  }
   return (
    <section className='details'>
     <article className='details__start'>
@@ -25,11 +31,26 @@ const DetallePelicula = () => {
         <span>Elige el horario que prefieras</span>
         <span>Marco plaza del mar</span>
         <div className='buttons'>
-          <button>18:00</button>
-          <button>19:00</button>
-          <button>21:30</button>
+          <button 
+          onClick={() => handleClick(0)}
+          className={botonActivo === 0 ? 'activeButton' : 'inactiveButton'}
+
+          >18:00</button>
+          <button 
+          onClick={() => handleClick(1)}
+          className={botonActivo === 1 ? 'activeButton' : 'inactiveButton'}
+
+          >19:00</button>
+          <button 
+          onClick={() => handleClick(2)}
+          className={botonActivo === 2 ? 'activeButton' : 'inactiveButton'}
+
+          >21:30</button>
         </div>
-        <button className='bol'>Seleccionar boletos</button>
+        <button 
+        
+        className={botonActivo !== null ? 'activeButton' : 'inactiveButton'}
+        >Seleccionar boletos</button>
       </div>
       </article>
 

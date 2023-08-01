@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+.headerAdmin {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-secondary;
+  color: $color-primary;
+  padding: 20px 0 20px 20px;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &__user {
+    .perfil{
+    display: flex; 
+    .date {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+    
+
+    
+  }
+  &__tools {
+    .tool {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
