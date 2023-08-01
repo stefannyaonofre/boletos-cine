@@ -60,12 +60,11 @@ const DetallePelicula = () => {
             </div>
           </div>
         </div>
-      </div>
 
       <div className='details__start-info'>
-        <h1>Horarios disponibles: 07 de julio</h1>
+        <h1>Horarios disponibles: {seleccionFecha}</h1>
         <span>Elige el horario que prefieras</span>
-        <span>Marco plaza del mar</span>
+        <span>{seleccionTeatro}</span>
         <div className='buttons'>
           <button 
           onClick={() => handleClick(0)}
@@ -106,7 +105,9 @@ const DetallePelicula = () => {
         <h2>Sipnosis</h2>
         <p>{movie?.overview}</p>
       </article>
+
     </section>
+
   );
 };
 
