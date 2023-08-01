@@ -5,7 +5,7 @@ const PrivateRouter = ({isAutenticate}) => {
   return (
     <div>
         {
-            isAutenticate ? <Outlet /> : <Navigate to={'/home'}/>
+            isAutenticate ? <Outlet /> : <Navigate to={'/'}/>
         }
     </div>
   )

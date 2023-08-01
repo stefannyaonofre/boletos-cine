@@ -5,7 +5,7 @@ const PublicRouter = ({isAutenticate}) => {
   return (
     <div>
         {
-           isAutenticate ? <Navigate to={'/'}/> : <Outlet/> 
+           isAutenticate ? <Navigate to={'/admin'}/> : <Outlet/> 
         }
     </div>
   )

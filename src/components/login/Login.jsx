@@ -3,14 +3,17 @@ import eye from "../../assets/eye.svg";
 import eyeShow from "../../assets/eye-show.svg";
 import cancel from "../../assets/cancel.svg";
 import "./login.scss";
-const Login = () => {
+const Login = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
+ 
   return (
     <>
+
       <div className="login">
-        <button className="login__cancel">
-          <img src={cancel} />
+        <button className="login__cancel"  onClick={onClose}>
+          <img src={cancel} alt="Close"/>
         </button>
+        
         <div className="login__text">
           <h1>Bienvenido</h1>
           <h3>Inicia sesión</h3>
@@ -41,6 +44,7 @@ const Login = () => {
         </div>
         <button className="login__button">Iniciar sesión</button>
       </div>
+    
     </>
   );
 };

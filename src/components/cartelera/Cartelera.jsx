@@ -5,17 +5,21 @@ import "./cartelera.scss";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../../routes/Router";
+import Swal from "sweetalert2";
+import useSessionStorage from "../../hooks/useSessionStorage";
 
-const Cartelera = ({genders}) => {
+const Cartelera = ({ genders }) => {
+  const key = "teatroFecha";
   const [moviesList, setMoviesList] = useState([]);
   const list = [];
   const navigate = useNavigate();
-  const { setMovieDetail } = useContext(AppContext);
+  const { setMovieDetail, seleccionTeatro, seleccionFecha } =
+    useContext(AppContext);
+  const { saveInfo } = useSessionStorage();
 
   useEffect(() => {
     movies();
-    console.log(genders);
-  }, [genders]);
+  }, [genders, seleccionTeatro, seleccionFecha]);
 
   const movies = async () => {
     const data = await getMovies();
@@ -23,19 +27,34 @@ const Cartelera = ({genders}) => {
       const listId = await getDetailsMovie(data[i].id);
       list.push(listId);
     }
-    if(genders === ''){
+    if (genders === "") {
       setMoviesList(list);
-    }else{
-      const filterGenders = list.filter((item)=>(item.gender.find(gender => gender === genders)));
-      setMoviesList(filterGenders)
+    } else {
+      const filterGenders = list.filter((item) =>
+        item.gender.find((gender) => gender === genders)
+      );
+      setMoviesList(filterGenders);
     }
   };
 
   const handleDetail = (movie) => {
-    console.log(movie);
     setMovieDetail(movie);
-    navigate('detalle')
-  }
+    if (seleccionTeatro === undefined || seleccionFecha === undefined) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Debe seleccionar el tetro y la fecha",
+      });
+    } else {
+      
+      const newInfo = {
+        teatro: seleccionTeatro,
+        fecha: seleccionFecha,
+      };
+      saveInfo(key, newInfo);
+      navigate(`detalle/${movie.id}`);
+    }
+  };
 
   return (
     <>
@@ -43,7 +62,12 @@ const Cartelera = ({genders}) => {
         <h3>EN CARTELERA</h3>
         <article className="article__cartelera">
           {moviesList.map((movie) => (
-            <div className="cartelera" id={movie.id} key={movie.id} onClick={() => (handleDetail (movie))}>
+            <div
+              className="cartelera"
+              id={movie.id}
+              key={movie.id}
+              onClick={() => handleDetail(movie)}
+            >
               <figure className="cartelera__figure">
                 <img src={movie.image} />
               </figure>

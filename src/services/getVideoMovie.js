@@ -6,7 +6,9 @@ export const getVideoMovie = async (id) => {
     try {
         const urlVideo = endpoints.urlVideo(id);
         const { data } = await axios.get(urlVideo);
-        const video = data.result.find((item) => item.type.toLowerCase().includes('trailer'));
+        console.log(data)
+        const video = data.results.find((item) => item.type.toLowerCase().includes('trailer'));
+        console.log(video);
         return video;
 
     } catch (error) {
