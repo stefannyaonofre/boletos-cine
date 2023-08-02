@@ -7,6 +7,8 @@ import Admin from "../components/admin/Admin.jsx";
 import PrivateRouter from "./PrivateRouter.jsx";
 import DetallePelicula from "../components/detallePelicula/DetallePelicula.jsx";
 import { createContext } from "react";
+import SeleccionBoletos from "../components/seleccionBoletos/SeleccionBoletos.jsx";
+import SeleccionAsientos from "../components/seleccionAsientos/SeleccionAsientos.jsx";
 
 export const AppContext = createContext({});
 
@@ -26,6 +28,8 @@ const Router = () => {
         setSeleccionTeatro,
         seleccionFecha,
         setSeleccionFecha,
+        isLogin,
+        setIsLogin,
         isLoginOpen,
         setIsLoginOpen,
       }}
@@ -37,6 +41,14 @@ const Router = () => {
               <Route element={<Home setGenders={setGenders} />}>
                 <Route index element={<Cartelera genders={genders} />} />
                 <Route path="detalle/:idMovie" element={<DetallePelicula />} />
+                <Route
+                  path="detalle/:idMovie/boletos"
+                  element={<SeleccionBoletos />}
+                />
+                <Route
+                  path="detalle/:idMovie/boletos/asientos"
+                  element={<SeleccionAsientos />}
+                />
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
