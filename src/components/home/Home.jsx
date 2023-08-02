@@ -8,6 +8,7 @@ import TransaccionExitosa from "../transaccionExitosa/TransaccionExitosa.jsx";
 import DescargaBoletos from "../descargaBoletos/DescargaBoletos.jsx";
 import PanelAdmin from "../panelAdmin/PanelAdmin.jsx";
 import Admin from "../admin/Admin.jsx";
+import Login from "../login/Login.jsx";
 
 const Home = ({setGenders}) => {
 
@@ -15,8 +16,8 @@ const Home = ({setGenders}) => {
     <div>
       <Header setGenders={setGenders} />
       <Carrusel />
-
       <Outlet/>
+     {/* <Admin/> */}
      
     </div>
   );

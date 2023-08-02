@@ -11,14 +11,25 @@ import { createContext } from "react";
 export const AppContext = createContext({});
 
 const Router = () => {
-  const [ isLogin, setIsLogin ] = useState(false);
-  const [ genders, setGenders ] = useState("");
-  const [ movieDetail, setMovieDetail ] = useState();
-  const [ seleccionTeatro, setSeleccionTeatro ] = useState();
-  const [ seleccionFecha, setSeleccionFecha ] = useState();
-
+  const [isLogin, setIsLogin] = useState(false);
+  const [genders, setGenders] = useState("");
+  const [movieDetail, setMovieDetail] = useState();
+  const [seleccionTeatro, setSeleccionTeatro] = useState();
+  const [seleccionFecha, setSeleccionFecha] = useState();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   return (
-    <AppContext.Provider value={{movieDetail, setMovieDetail, seleccionTeatro, setSeleccionTeatro, seleccionFecha, setSeleccionFecha}}>
+    <AppContext.Provider
+      value={{
+        movieDetail,
+        setMovieDetail,
+        seleccionTeatro,
+        setSeleccionTeatro,
+        seleccionFecha,
+        setSeleccionFecha,
+        isLoginOpen,
+        setIsLoginOpen,
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/">
