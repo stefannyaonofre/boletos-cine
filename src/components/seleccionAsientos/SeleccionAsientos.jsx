@@ -1,9 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./seleccionAsientos.scss";
 import Asiento from "../asiento/Asiento";
 import { MdChair } from "react-icons/md";
+import useSessionStorage from "../../hooks/useSessionStorage";
+import { useParams } from "react-router-dom";
+import { getDetailsMovie } from "../../services/getDetailsMovie";
+import { getSalas } from "../../services/getSalas";
+
 const SeleccionAsientos = () => {
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
+  const [movie, setMovie] = useState([]);
+  const [sala, setSala] = useState([]);
+  const key = 'teatroFecha';
+  const keyFunction = 'function';
+  const keyBoletos = 'boletos';
+  const { getInfo, saveInfo } = useSessionStorage();
+  const { idMovie } = useParams();
+  const teatroFecha = getInfo(key);
+  const functions = getInfo(keyFunction);
+  const boletos = getInfo(keyBoletos);
+
+  useEffect(() => {
+    detailMovie()
+    consultarSala()
+  }, [])
+
+  const detailMovie = async () => {
+    const detail = await getDetailsMovie(idMovie);
+    setMovie(detail);
+  };
+
+  const consultarSala = async() => {
+    const detailSala = await getSalas();
+    const filter = detailSala.filter((item) => item.id == functions[0].idSala);
+    setSala(filter);
+  }
+
   const generarAsientos = () => {
     const filas = "ABCDE"; // Letras de las filas A a E
     const numeroAsientosPorFila = 6; // Número de asientos por fila-columna
@@ -20,8 +52,6 @@ const SeleccionAsientos = () => {
         asientos.push({ letra: fila, numero, estado });
       }
     }
-    console.log(asientos);
-
     return asientos;
   };
 
@@ -105,17 +135,17 @@ const SeleccionAsientos = () => {
         <div className="infpel">
           <figure>
             <img
-              src="https://dca.gob.gt/noticias-guatemala-diario-centro-america/wp-content/uploads/2022/04/Strange-estreno-guatemala-DCA.jpeg"
+              src={movie?.image}
               alt="pelicula"
             />
           </figure>
           <div className="deta">
-            <span>Pelicula: Doctor Strange </span>
-            <span>Cinema: Marco plaza del mar</span>
-            <span>Fecha: 07 de julio de 2023</span>
-            <span>Funcion: 7:30 pm</span>
-            <span>Boletos:se pinta numero boletos</span>
-            <span>Número de sala:se pinta numero de sala</span>
+            <span>Pelicula: {movie?.name} </span>
+            <span>Cinema: {teatroFecha.teatro}</span>
+            <span>Fecha: {teatroFecha.fecha}</span>
+            <span>Funcion: {functions[0].horarioInicio}</span>
+            <span>Boletos: {boletos.cantBoletos}</span>
+            <span>Número de sala: {sala[0]?.name}</span>
             <span>Asientos:{asientosSeleccionados.join(", ")}</span>
           </div>
         </div>
