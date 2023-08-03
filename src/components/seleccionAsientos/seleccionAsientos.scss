@@ -7,16 +7,16 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .row-labels{
+    .row-labels {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-left: 40px;
       margin-right: 55px;
-      }
+    }
     .columChair {
       display: flex;
-      .column-labels{
+      .column-labels {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -144,5 +144,27 @@
     //     }
 
     //   }
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .chair {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 450px;
+    }
+    .chair__right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
   }
 }

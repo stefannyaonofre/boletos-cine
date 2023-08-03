@@ -15,14 +15,27 @@ import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
 export const AppContext = createContext({});
 
 const Router = () => {
-  const [ isLogin, setIsLogin ] = useState(false);
-  const [ genders, setGenders ] = useState("");
-  const [ movieDetail, setMovieDetail ] = useState();
-  const [ seleccionTeatro, setSeleccionTeatro ] = useState();
-  const [ seleccionFecha, setSeleccionFecha ] = useState();
-
+  const [isLogin, setIsLogin] = useState(false);
+  const [genders, setGenders] = useState("");
+  const [movieDetail, setMovieDetail] = useState();
+  const [seleccionTeatro, setSeleccionTeatro] = useState();
+  const [seleccionFecha, setSeleccionFecha] = useState();
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   return (
-    <AppContext.Provider value={{movieDetail, setMovieDetail, seleccionTeatro, setSeleccionTeatro, seleccionFecha, setSeleccionFecha, isLogin, setIsLogin}}>
+    <AppContext.Provider
+      value={{
+        movieDetail,
+        setMovieDetail,
+        seleccionTeatro,
+        setSeleccionTeatro,
+        seleccionFecha,
+        setSeleccionFecha,
+        isLogin,
+        setIsLogin,
+        isLoginOpen,
+        setIsLoginOpen,
+      }}
+    >
       <BrowserRouter>
         <Routes>
           <Route path="/">

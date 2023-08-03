@@ -1,19 +1,26 @@
-import React, { useState, useEffect, useContext } from 'react';
-import logo from '../../assets/logo.jpg';
-import user from '../../assets/user.svg';
-import './header.scss';
-import { getCinemas } from '../../services/getCinemas';
-import { AppContext } from '../../routes/Router';
-import Login from '../login/Login';
+import React, { useState, useEffect, useContext } from "react";
+import logo from "../../assets/logo.jpg";
+import user from "../../assets/user.svg";
+import "./header.scss";
+import { getCinemas } from "../../services/getCinemas";
+import { AppContext } from "../../routes/Router";
+import Login from "../login/Login";
 
-
-const Header = ({ setGenders, setIsLoginOpen, isLoginOpen }) => {
+const Header = ({ setGenders }) => {
   const [dataCinemas, setDataCinemas] = useState([]);
-  const { setSeleccionTeatro, seleccionTeatro, setSeleccionFecha } = useContext(AppContext);
+  const {
+    setSeleccionTeatro,
+    seleccionTeatro,
+    setSeleccionFecha,
+    isLogin,
+    setIsLogin,
+    isLoginOpen,
+    setIsLoginOpen,
+  } = useContext(AppContext);
 
   useEffect(() => {
     consultCinemas();
-  },[seleccionTeatro])
+  }, [seleccionTeatro]);
 
   const consultCinemas = async () => {
     const cinema = await getCinemas();
@@ -63,19 +70,26 @@ const Header = ({ setGenders, setIsLoginOpen, isLoginOpen }) => {
         <div className="header__selects">
           <div className="header__teatros">
             <span>Cines cercanos</span>
-            <select name="select__teatro" className="header__teatros-select" onChange={ (event) => setSeleccionTeatro( event.target.value)}>
+            <select
+              name="select__teatro"
+              className="header__teatros-select"
+              onChange={(event) => setSeleccionTeatro(event.target.value)}
+            >
               <option value={seleccionTeatro}>Seleccione un teatro</option>
-              { 
-                dataCinemas.map(cine => (
-                  <option value={cine.name} key={cine.id}>{cine.name}</option>
-                ))
-              }
-
+              {dataCinemas.map((cine) => (
+                <option value={cine.name} key={cine.id}>
+                  {cine.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="header__fecha">
             <span>Fecha</span>
-            <select name="select__fecha" className="header__fecha-selec" onChange={ (event) => setSeleccionFecha( event.target.value)}>
+            <select
+              name="select__fecha"
+              className="header__fecha-selec"
+              onChange={(event) => setSeleccionFecha(event.target.value)}
+            >
               <option value="fecha">Seleccione una Fecha</option>
               <option value="2023-08-08">2023-08-08</option>
               <option value="2023-08-09">2023-08-09</option>
@@ -88,11 +102,10 @@ const Header = ({ setGenders, setIsLoginOpen, isLoginOpen }) => {
             <img src={user} />
           </figure>
         </div>
+        {isLoginOpen && <Login signIn={setIsLogin} onClose={handleCloseLogin} />}
       </header>
-      {isLoginOpen && <Login onClose={handleCloseLogin} />}
-      
     </>
   );
 };
 
-export default Header
+export default Header;
