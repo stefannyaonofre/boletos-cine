@@ -52,7 +52,7 @@ const Cartelera = ({ genders }) => {
         fecha: seleccionFecha,
       };
       saveInfo(key, newInfo);
-      navigate(`detalle/${movie.id}`);
+      navigate(`${movie.id}`);
     }
   };
 

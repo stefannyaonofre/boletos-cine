@@ -47,13 +47,13 @@ const DetallePelicula = () => {
   }
 
   const handleSelection = () => {
-    navigate(`boletos`)
+    navigate(`/${idMovie}/boletos`)
   }
 
   return (
-    <section className="details">
-      <article className="details__start">
-        <div className="details__start-movie">
+    <section className="detailss">
+      <article className="detailss__start">
+        <div className="detailss__start-movie">
           <figure>
             <img src={movie?.image} alt="pelicula" />
           </figure>
@@ -75,7 +75,7 @@ const DetallePelicula = () => {
           </div>
         </div>
 
-      <div className='details__start-info'>
+      <div className='detailss__start-info card p-3 bg-body-secondary d-flex justify-content-center align-items-center vw-50 vh-50'>
         <h1>Horarios disponibles: {teatroFecha.fecha}</h1>
         <span>Elige el horario que prefieras</span>
         <span>{teatroFecha.teatro}</span>
@@ -100,7 +100,7 @@ const DetallePelicula = () => {
       </div>
       </article>
 
-      <article className="details__end">
+      <article className="detailss__end">
         <h1>Trailer</h1>
         {videoMovie && (
           <iframe

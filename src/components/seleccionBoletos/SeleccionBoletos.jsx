@@ -68,7 +68,7 @@ const SeleccionBoletos = () => {
       total: totalBoletos
     }
     saveInfo(keyBoletos, newObject)
-    navigate(`asientos`)
+    navigate(`/${idMovie}/asientos`)
   }
 
   return (
@@ -106,7 +106,7 @@ const SeleccionBoletos = () => {
       </div>
     </div>
 
-    <div className="containerBoleto__right">
+    <div className="containerBoleto__right card p-3 bg-body-secondary">
       <h1>Resumen de compra</h1>
       <div className="infpel">
         <figure>
