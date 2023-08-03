@@ -25,11 +25,18 @@ const SeleccionAsientos = () => {
   const boletos = getInfo(keyBoletos);
   const [seleccionAsientos, setSeleccionAsientos] = useState([]);
   const navigate = useNavigate();
+  const [botonActivo, setBotonActivo] = useState(false)
+
 
   useEffect(() => {
     detailMovie();
     consultarSala();
     consultarAsientosOcupados();
+    if(seleccionAsientos.length==boletos.cantBoletos){
+      setBotonActivo(true)
+    }else{
+      setBotonActivo(false)
+    }
   }, [seleccionAsientos]);
 
   const detailMovie = async () => {
@@ -86,6 +93,7 @@ const SeleccionAsientos = () => {
     } else if (seleccionAsientos.length < boletos.cantBoletos) {
       setSeleccionAsientos([...asientosSeleccionados, asientoSeleccionado]);
       setAsientosSeleccionados([...asientosSeleccionados, asientoSeleccionado]);
+      
     } else {
       Swal.fire({
         icon: "error",
@@ -173,8 +181,8 @@ const SeleccionAsientos = () => {
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
         <h2>Total (IVA incluido): {boletos.total}</h2>
-        <button onClick={pagoBoletos}>Continuar</button>
-        {/* className={botonActivo ? "activeButton" : "inactiveButton"} */}
+        <button className={botonActivo ? "activeButton" : "inactiveButton"}  onClick={pagoBoletos}>Continuar</button>
+         
       </div>
     </div>
   );
