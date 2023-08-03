@@ -9,6 +9,8 @@ import DetallePelicula from "../components/detallePelicula/DetallePelicula.jsx";
 import { createContext } from "react";
 import SeleccionBoletos from "../components/seleccionBoletos/SeleccionBoletos.jsx";
 import SeleccionAsientos from "../components/seleccionAsientos/SeleccionAsientos.jsx";
+import "bootstrap/dist/css/bootstrap.min.css";
+import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
 
 export const AppContext = createContext({});
 
@@ -40,15 +42,10 @@ const Router = () => {
             <Route element={<PublicRouter isAutenticate={isLogin} />}>
               <Route element={<Home setGenders={setGenders} />}>
                 <Route index element={<Cartelera genders={genders} />} />
-                <Route path="detalle/:idMovie" element={<DetallePelicula />} />
-                <Route
-                  path="detalle/:idMovie/boletos"
-                  element={<SeleccionBoletos />}
-                />
-                <Route
-                  path="detalle/:idMovie/boletos/asientos"
-                  element={<SeleccionAsientos />}
-                />
+                <Route path=":idMovie" element={<DetallePelicula />} />
+                <Route path=":idMovie/boletos" element={<SeleccionBoletos/>}/>
+                <Route path=":idMovie/asientos" element={<SeleccionAsientos />}/>
+                <Route path=":idMovie/pagos" element={<PagoBoletos />}/>
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
