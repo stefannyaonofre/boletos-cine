@@ -26,7 +26,7 @@ const Carrusel = () => {
   };
 
   return (
-    <div className="container">
+    <div className="containerr">
       <div className="swiperContainer">
         <Swiper
           effect={"coverflow"}

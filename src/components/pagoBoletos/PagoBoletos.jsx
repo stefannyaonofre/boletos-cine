@@ -4,6 +4,9 @@ import master from "../../assets/master.svg";
 import visa from "../../assets/visa.svg";
 import amex from "../../assets/amex.svg";
 import Swal from "sweetalert2";
+import useSessionStorage from "../../hooks/useSessionStorage";
+import { useParams } from "react-router-dom";
+
 const PagoBoletos = () => {
   const [botonActivo, setBotonActivo] = useState(false);
   const [formulario, setFormulario] = useState({
@@ -13,6 +16,12 @@ const PagoBoletos = () => {
     fecha: "",
     cvv: "",
   });
+  const key = "teatroFecha";
+  const keyFunction = "function";
+  const keyBoletos = "boletos";
+  const keyAsientos = "asientos";
+  const { getInfo, saveInfo } = useSessionStorage();
+  const { idMovie } = useParams();
 
   const handleInputChange = (event) => {
     const inputName = event.target.name;
@@ -142,7 +151,7 @@ const PagoBoletos = () => {
         </div>
       </div>
 
-      <div className="containerPago__right">
+      <div className="containerPago__right card p-3 bg-body-secondary">
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>
