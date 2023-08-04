@@ -75,7 +75,7 @@ const DetallePelicula = () => {
           </div>
         </div>
 
-      <div className='detailss__start-info card p-3 bg-body-secondary d-flex justify-content-center align-items-center vw-50 vh-50'>
+      <div className='detailss__start-info'>
         <h1>Horarios disponibles: {teatroFecha.fecha}</h1>
         <span>Elige el horario que prefieras</span>
         <span>{teatroFecha.teatro}</span>

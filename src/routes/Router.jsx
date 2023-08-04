@@ -9,7 +9,6 @@ import DetallePelicula from "../components/detallePelicula/DetallePelicula.jsx";
 import { createContext } from "react";
 import SeleccionBoletos from "../components/seleccionBoletos/SeleccionBoletos.jsx";
 import SeleccionAsientos from "../components/seleccionAsientos/SeleccionAsientos.jsx";
-import "bootstrap/dist/css/bootstrap.min.css";
 import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
 
 export const AppContext = createContext({});

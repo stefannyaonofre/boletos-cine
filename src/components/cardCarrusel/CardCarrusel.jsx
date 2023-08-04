@@ -15,7 +15,7 @@ const CardCarrusel = ({ movie }) => {
         <span>
           Género:{" "}
           {movie.gender.map((item, index) => (
-            <span key={index}>{item}, </span>
+            <span key={index}>{item} {index < movie.gender.length - 1 ? ", " : ""}</span>
           ))}
         </span>
         <div>

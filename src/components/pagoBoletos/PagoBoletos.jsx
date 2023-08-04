@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./pagoBoletos.scss";
 import master from "../../assets/master.svg";
 import visa from "../../assets/visa.svg";
 import amex from "../../assets/amex.svg";
 import Swal from "sweetalert2";
-import useSessionStorage from "../../hooks/useSessionStorage";
 import { useParams } from "react-router-dom";
+import { getDetailsMovie } from "../../services/getDetailsMovie";
+import useSessionStorage from "../../hooks/useSessionStorage";
+import { getSalas } from "../../services/getSalas";
 
 const PagoBoletos = () => {
   const [botonActivo, setBotonActivo] = useState(false);
@@ -16,12 +18,35 @@ const PagoBoletos = () => {
     fecha: "",
     cvv: "",
   });
+  const [movie, setMovie] = useState([]);
+  const { getInfo, saveInfo } = useSessionStorage();
+  const [sala, setSala] = useState([]);
   const key = "teatroFecha";
   const keyFunction = "function";
   const keyBoletos = "boletos";
   const keyAsientos = "asientos";
-  const { getInfo, saveInfo } = useSessionStorage();
+  const teatroFecha = getInfo(key);
+  const functions = getInfo(keyFunction);
+  const boletos = getInfo(keyBoletos);
+  const asientos = getInfo(keyAsientos);
   const { idMovie } = useParams();
+
+  useEffect(() => {
+    detailMovie()
+    consultarSala()
+    console.log(asientos)
+  }, [])
+
+  const detailMovie = async () => {
+    const detail = await getDetailsMovie(idMovie);
+    setMovie(detail);
+  };
+
+  const consultarSala = async () => {
+    const detailSala = await getSalas();
+    const filter = detailSala.filter((item) => item.id == functions[0].idSala);
+    setSala(filter);
+  };
 
   const handleInputChange = (event) => {
     const inputName = event.target.name;
@@ -151,31 +176,30 @@ const PagoBoletos = () => {
         </div>
       </div>
 
-      <div className="containerPago__right card p-3 bg-body-secondary">
+      <div className="containerPago__right">
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>
             <img
-              src="https://dca.gob.gt/noticias-guatemala-diario-centro-america/wp-content/uploads/2022/04/Strange-estreno-guatemala-DCA.jpeg"
+              src={movie?.image}
               alt="pelicula"
             />
           </figure>
           <div className="deta">
-            <span>Pelicula: Doctor Strange </span>
-            <span>Cinema: Marco plaza del mar</span>
-            <span>Fecha: 07 de julio de 2023</span>
-            <span>Funcion: 7:30 pm</span>
-            <span>Boletos:se pinta numero boletos</span>
-            <span>Número de sala:se pinta numero de sala</span>
-            <span>Asientos:</span>
+            <span>Pelicula: {movie?.name} </span>
+            <span>Cinema: {teatroFecha.teatro}</span>
+            <span>Fecha: {teatroFecha.fecha}</span>
+            <span>Funcion: {functions[0].horarioInicio}</span>
+            <span>Boletos: {boletos.cantBoletos}</span>
+            <span>Número de sala: {sala[0]?.name}</span>
+            <span>Asientos: {asientos?.map( item => item).join(", ")}</span>
           </div>
         </div>
 
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h2>Total (IVA incluido): </h2>
-        {/* ${totalBoletos} */}
+        <h2>Total (IVA incluido): {boletos.total}</h2>
         <button className={botonActivo ? "activeButton" : "inactiveButton"}
         onClick={handlePagarAhora}>
           Pagar ahora
