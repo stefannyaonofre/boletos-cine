@@ -160,7 +160,7 @@ const SeleccionAsientos = () => {
         </div>
       </div>
 
-      <div className="chair__right card p-3 bg-body-secondary">
+      <div className="chair__right">
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>

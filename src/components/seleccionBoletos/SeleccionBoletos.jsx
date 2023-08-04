@@ -18,7 +18,7 @@ const SeleccionBoletos = () => {
   const navigate = useNavigate();
   
   const valorBoleto = 10000;
-  const [botonActivo, setBotonActivo] = useState(false); //bandera para el boton continuar
+  const [botonActivo, setBotonActivo] = useState(false);
   const handlePlus = (type) => {
     switch (type) {
       case "PUBLICO":
@@ -106,7 +106,7 @@ const SeleccionBoletos = () => {
       </div>
     </div>
 
-    <div className="containerBoleto__right card p-3 bg-body-secondary">
+    <div className="containerBoleto__right">
       <h1>Resumen de compra</h1>
       <div className="infpel">
         <figure>
