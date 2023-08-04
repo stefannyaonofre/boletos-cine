@@ -100,50 +100,50 @@
         background: rgb(16, 24, 183);
       }
     }
-    // .activeButton{
-    //   display: flex;
-    //   height: 35px;
-    //   align-items: center;
-    //   justify-content: center;
-    //   padding-left: 15px;
-    //   padding-right: 15px;
-    //   font-size: 14px;
-    //   line-height: 26px;
-    //   font-weight: 500;
-    //   color: $color-primary;
-    //   background: $color-blue;
-    //   opacity: 1;
-    //   border: none;
-    //   border-radius: 20px;
-    //   cursor: pointer;
-    //   :hover {
-    //     color: $color-primary;
-    //     background: rgb(16, 24, 183);
-    //   }
+    .activeButton{
+      display: flex;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 500;
+      color: $color-primary;
+      background: $color-blue;
+      opacity: 1;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      :hover {
+        color: $color-primary;
+        background: rgb(16, 24, 183);
+      }
 
-    // }
-    // .inactiveButton{
-    //     display: flex;
-    //     height: 35px;
-    //     align-items: center;
-    //     justify-content: center;
-    //     padding-left: 15px;
-    //     padding-right: 15px;
-    //     font-size: 14px;
-    //     line-height: 26px;
-    //     font-weight: 500;
-    //     color: $color-primary;
-    //     background: $color-gray;
-    //     opacity: 1;
-    //     border: none;
-    //     border-radius: 20px;
-    //     cursor: pointer;
-    //     :hover {
-    //       color: $color-primary;
-    //       background: rgb(16, 24, 183);
-    //     }
+    }
+    .inactiveButton{
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 500;
+        color: $color-primary;
+        background: $color-gray;
+        opacity: 1;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        :hover {
+          color: $color-primary;
+          background: rgb(16, 24, 183);
+        }
 
-    //   }
+      }
   }
 }
 
