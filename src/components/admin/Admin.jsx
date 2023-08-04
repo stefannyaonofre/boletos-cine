@@ -6,11 +6,16 @@ import tools from "../../assets/tools.svg";
 import calendar from "../../assets/calendar.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useSessionStorage from "../../hooks/useSessionStorage";
 
 
 const Admin = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [user, setUser] = useState({})
+  const key= "user"
+  const { getInfo } = useSessionStorage();
+  const nameUser = getInfo(key)
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -21,7 +26,6 @@ const Admin = () => {
     console.log("Fecha seleccionada:", date.toLocaleDateString("es"));
     
   };
-  
   const fecha = selectedDate ? selectedDate.toLocaleDateString("es") : null;
   
   return (
@@ -38,7 +42,7 @@ const Admin = () => {
                 <img src={admin} alt="Administrador" />
               </figure>
               <div className="date">
-                <span>Stefannya Onofre</span>
+                <span>{nameUser.name}</span>
                 <span>View profile</span>
               </div>
             </div>

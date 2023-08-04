@@ -12,6 +12,8 @@ const Header = ({ setGenders }) => {
     setSeleccionTeatro,
     seleccionTeatro,
     setSeleccionFecha,
+    isLogin,
+    setIsLogin,
     isLoginOpen,
     setIsLoginOpen,
   } = useContext(AppContext);
@@ -100,7 +102,7 @@ const Header = ({ setGenders }) => {
             <img src={user} />
           </figure>
         </div>
-        {isLoginOpen && <Login onClose={handleCloseLogin} />}
+        {isLoginOpen && <Login signIn={setIsLogin} onClose={handleCloseLogin} />}
       </header>
     </>
   );
