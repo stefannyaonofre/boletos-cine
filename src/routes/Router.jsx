@@ -11,6 +11,8 @@ import SeleccionBoletos from "../components/seleccionBoletos/SeleccionBoletos.js
 import SeleccionAsientos from "../components/seleccionAsientos/SeleccionAsientos.jsx";
 import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
 import TransaccionExitosa from "../components/transaccionExitosa/TransaccionExitosa.jsx";
+import PanelAdmin from "../components/panelAdmin/PanelAdmin.jsx";
+import DescargaBoletos from "../components/descargaBoletos/DescargaBoletos.jsx";
 
 export const AppContext = createContext({});
 
@@ -43,14 +45,24 @@ const Router = () => {
               <Route element={<Home setGenders={setGenders} />}>
                 <Route index element={<Cartelera genders={genders} />} />
                 <Route path=":idMovie" element={<DetallePelicula />} />
-                <Route path=":idMovie/boletos" element={<SeleccionBoletos/>}/>
-                <Route path=":idMovie/asientos" element={<SeleccionAsientos />}/>
-                <Route path=":idMovie/pagos" element={<PagoBoletos />}/>
-                <Route path=":idMovie/transaccion" element={<TransaccionExitosa />}/>
+                <Route path=":idMovie/boletos" element={<SeleccionBoletos />} />
+                <Route
+                  path=":idMovie/asientos"
+                  element={<SeleccionAsientos />}
+                />
+                <Route path=":idMovie/pagos" element={<PagoBoletos />} />
+                <Route
+                  path=":idMovie/transaccion"
+                  element={<TransaccionExitosa />}
+                />
+                <Route path=":idMovie/descarga" element={<DescargaBoletos />}/>
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
-              <Route path="admin" element={<Admin signIn={setIsLogin} />} />
+              <Route path="admin" element={<PanelAdmin />}>
+                <Route index element={<Cartelera genders={genders}/>} />
+                <Route path=":idMovie" element={<Admin />}/>
+              </Route>
             </Route>
           </Route>
         </Routes>
