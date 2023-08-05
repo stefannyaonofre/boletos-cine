@@ -33,9 +33,11 @@ const Header = ({ setGenders }) => {
   const handleSubmit = (gender) => {
     setGenders(gender);
   };
+  
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
   };
+
   const handleLogoClick = () => {
     Swal.fire({
       title: 'Serás redirigido a la página principal',

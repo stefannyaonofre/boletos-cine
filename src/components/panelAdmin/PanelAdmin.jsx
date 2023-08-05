@@ -1,15 +1,21 @@
-import React from 'react'
+import React from "react";
+import Header from "../header/Header";
+import { Outlet, useLocation } from "react-router-dom";
 
-import Header from '../header/Header';
-import { Outlet } from 'react-router-dom';
 const PanelAdmin = () => {
 
-  return (
- <>
-  <Header />
-  <Outlet />  
- </>
-  )
-}
+  const location = useLocation();
+  const path = location.pathname;
 
-export default PanelAdmin
+  return (
+    <>
+    {
+      path == "/admin" ? <Header /> : ""
+
+    }
+      <Outlet />
+    </>
+  );
+};
+
+export default PanelAdmin;

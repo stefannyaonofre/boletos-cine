@@ -66,6 +66,7 @@ const Admin = () => {
           </figure>
         </div>
       </header>
+      
       <main className="mainAdmin">
         <section className="mainAdmin__leftt">
           <div>

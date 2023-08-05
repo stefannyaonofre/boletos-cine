@@ -10,3 +10,15 @@ export const getTicket = async() => {
         return error;
     }
 }
+
+export const saveTicket = async(ticket) =>{
+    try {
+
+        const { data } = await axios.post(endpoints.urlTickect, {...ticket});
+        return data;
+        
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

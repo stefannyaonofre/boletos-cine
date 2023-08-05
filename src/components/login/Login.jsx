@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import eye from "../../assets/eye.svg";
 import eyeShow from "../../assets/eye-show.svg";
 import cancel from "../../assets/cancel.svg";
@@ -7,27 +7,18 @@ import { getAdmin } from "../../services/getAdmin";
 import useSessionStorage from "../../hooks/useSessionStorage";
 import Swal from "sweetalert2";
 import useForm from "../../hooks/useForm";
+import { AppContext } from "../../routes/Router";
+
 const Login = ({ onClose, signIn }) => {
   const key = "user";
   const [dataForm, handleChange, resetForm] = useForm();
   const [showPassword, setShowPassword] = useState(false); //estado bandera para la contraseña
-  const [dataAdmin, setDataAdmin] = useState([]);
   const { saveInfo } = useSessionStorage(key);
+  const { setIsLoginOpen } = useContext(AppContext)
 
-  //   const consultAdmin = async () => {
-  //     const admins = await getAdmin();
-  //     setDataAdmin(admins);
-  //   };
-  //   useEffect(() => {
-  //     consultAdmin();
-  //     console.log(dataAdmin);
-  //   }, []);
-  // console.log(dataAdmin)
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(dataForm);
     const loggedUser = await getAdmin(dataForm);
-    console.log(loggedUser);
     if (loggedUser) {
       Swal.fire(
         `¡Excelente ${loggedUser.user}!`,
@@ -35,12 +26,12 @@ const Login = ({ onClose, signIn }) => {
         "success"
       ).then(() => {
         signIn(true);
+        setIsLoginOpen(false)
         saveInfo(key, loggedUser);
       });
     } else {
       Swal.fire("Oopps!", "El usuario o contraseña son incorrectas", "error");
     }
-    console.log(loggedUser);
     resetForm();
   };
 

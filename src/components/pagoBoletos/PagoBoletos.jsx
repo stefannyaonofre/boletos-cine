@@ -25,12 +25,11 @@ const PagoBoletos = () => {
   const keyFunction = "function";
   const keyBoletos = "boletos";
   const keyAsientos = "asientos";
-  const keyInfoUser = "infoUser";
+  const keyInfoPago = "infoPago";
   const teatroFecha = getInfo(key);
   const functions = getInfo(keyFunction);
   const boletos = getInfo(keyBoletos);
   const asientos = getInfo(keyAsientos);
-  // const infoUser = saveInfo(keyInfoUser)
   const { idMovie } = useParams();
   const navigate = useNavigate();
   const [card, setCard] = useState("");
@@ -90,6 +89,7 @@ const PagoBoletos = () => {
       "correo",
       "nombreTarjeta",
       "numeroTarjeta",
+      "tipoTarjeta",
       "fecha",
       "cvv",
     ];
@@ -107,20 +107,46 @@ const PagoBoletos = () => {
       //  logica para procesar el pago si todos los campos están diligenciados correctamente
       //
       Swal.fire({
-        icon: "Success",
+        icon: "success",
         title: "¡Muy bien!",
         text: "Pago realizado con exito",
       });
-      console.log(formulario);
-      saveInfo(keyInfoUser, formulario, card);
+      const infoFecha = new Date();
+      const dia = infoFecha.getDate();
+      const mes = infoFecha.getMonth();
+      const anio = infoFecha.getFullYear();
+
+      const meses = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+
+      const fecha = `${dia < 10 ? "0" : ""}${dia} de ${meses[mes]} de ${anio}`;
+      const newObjectPago = {
+        form: formulario,
+        tipoTarjeta: card,
+        fechaCompra: fecha
+      };
+      saveInfo(keyInfoPago, newObjectPago);
       navigate(`/${idMovie}/transaccion`);
     }
   };
-  const handleClick = (rutaImagen) => {
-    // console.log('hice click', tarjeta)
-    // const card = tarjeta
-    // console.log(card)
-    setCard(rutaImagen);
+  const handleClick = (rutaImagen, nombre) => {
+    const newCard = {
+      ruta: rutaImagen,
+      name: nombre,
+    };
+    setCard(newCard);
   };
   return (
     <div className="containerPago">
@@ -167,34 +193,39 @@ const PagoBoletos = () => {
                   className="icon"
                   src={visa}
                   alt="visa"
-                  onClick={() => handleClick(visa)}
+                  onClick={() => handleClick(visa, "visa")}
                 />
                 <img
                   className="icon"
                   src={master}
                   alt="master"
-                  onClick={() => handleClick(master)}
+                  onClick={() => handleClick(master, "master")}
                 />
                 <img
                   className="icon"
                   src={amex}
                   alt="amex"
-                  onClick={() => handleClick(amex)}
+                  onClick={() => handleClick(amex, "amex")}
                 />
               </figure>
-             
             </div>
           </div>
           <div className="cardSelect">
-                <span>Haz seleccionado: </span>
-              <figure>
-                {card ? (
-                  <img className="iconSelect" src={card} alt="tarjeta seleccionada" />
-                ) : (
-                  ""
-                )}
-              </figure>
-              </div>
+            <span>Haz seleccionado: </span>
+            <div>
+              {card.name ? <span>{card.name}</span> : ""}
+              {card.name && card.ruta ? " " : ""}
+              {card.ruta ? (
+                <img
+                  className="iconSelect"
+                  src={card.ruta}
+                  alt="tarjeta seleccionada"
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
           <div className="date">
             <div className="date1">
               <label>Seleccione una fecha</label>

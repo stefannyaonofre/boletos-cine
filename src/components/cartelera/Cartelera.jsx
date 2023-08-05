@@ -13,7 +13,7 @@ const Cartelera = ({ genders }) => {
   const [moviesList, setMoviesList] = useState([]);
   const list = [];
   const navigate = useNavigate();
-  const { setMovieDetail, seleccionTeatro, seleccionFecha } =
+  const { setMovieDetail, seleccionTeatro, seleccionFecha, isLogin } =
     useContext(AppContext);
   const { saveInfo } = useSessionStorage();
 
@@ -39,20 +39,24 @@ const Cartelera = ({ genders }) => {
 
   const handleDetail = (movie) => {
     setMovieDetail(movie);
-    if (seleccionTeatro === undefined || seleccionFecha === undefined) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Debe seleccionar el tetro y la fecha",
-      });
-    } else {
-      
-      const newInfo = {
-        teatro: seleccionTeatro,
-        fecha: seleccionFecha,
-      };
-      saveInfo(key, newInfo);
-      navigate(`${movie.id}`);
+    if(isLogin){
+      navigate(`${movie.id}`)
+    }else{
+      if (seleccionTeatro === undefined || seleccionFecha === undefined) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Debe seleccionar el tetro y la fecha",
+        });
+      } else {
+        
+        const newInfo = {
+          teatro: seleccionTeatro,
+          fecha: seleccionFecha,
+        };
+        saveInfo(key, newInfo);
+        navigate(`${movie.id}`);
+      }
     }
   };
 
@@ -61,7 +65,7 @@ const Cartelera = ({ genders }) => {
       <section>
         <h3>EN CARTELERA</h3>
         <article className="article__cartelera">
-          {moviesList.map((movie) => (
+          {moviesList?.map((movie) => (
             <div
               className="cartelera"
               id={movie.id}
