@@ -4,7 +4,7 @@ import master from "../../assets/master.svg";
 import visa from "../../assets/visa.svg";
 import amex from "../../assets/amex.svg";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import useSessionStorage from "../../hooks/useSessionStorage";
 import { getSalas } from "../../services/getSalas";
@@ -25,17 +25,20 @@ const PagoBoletos = () => {
   const keyFunction = "function";
   const keyBoletos = "boletos";
   const keyAsientos = "asientos";
+  const keyInfoUser = "infoUser";
   const teatroFecha = getInfo(key);
   const functions = getInfo(keyFunction);
   const boletos = getInfo(keyBoletos);
   const asientos = getInfo(keyAsientos);
+  // const infoUser = saveInfo(keyInfoUser)
   const { idMovie } = useParams();
+  const navigate = useNavigate();
+  const [card, setCard] = useState("");
 
   useEffect(() => {
-    detailMovie()
-    consultarSala()
-    console.log(asientos)
-  }, [])
+    detailMovie();
+    consultarSala();
+  }, []);
 
   const detailMovie = async () => {
     const detail = await getDetailsMovie(idMovie);
@@ -52,7 +55,8 @@ const PagoBoletos = () => {
     const inputName = event.target.name;
     const inputValue = event.target.value;
 
-    setFormulario({ //actualiza el estado del formulario
+    setFormulario({
+      //actualiza el estado del formulario
       ...formulario,
       [inputName]: inputValue,
     });
@@ -65,19 +69,20 @@ const PagoBoletos = () => {
       "fecha",
       "cvv",
     ];
-    const formularioCompleto = camposDiligenciados.every((campo) => //verifica cada uno 
-      campo === "correo" ||
-      campo === "nombreTarjeta" ||
-      campo === "numeroTarjeta" ||
-      campo === "fecha" ||
-      campo === "cvv"
-        ? formulario[campo] !== ""
-        : formulario[campo] !== ""
+    const formularioCompleto = camposDiligenciados.every(
+      (
+        campo //verifica cada uno
+      ) =>
+        campo === "correo" ||
+        campo === "nombreTarjeta" ||
+        campo === "numeroTarjeta" ||
+        campo === "fecha" ||
+        campo === "cvv"
+          ? formulario[campo] !== ""
+          : formulario[campo] !== ""
     );
 
     setBotonActivo(formularioCompleto); //si estan diligenciados se activa el boton de continuar a pago
-  
-    
   };
   const handlePagarAhora = () => {
     // Verificar si algún campo obligatorio está vacío
@@ -89,21 +94,33 @@ const PagoBoletos = () => {
       "cvv",
     ];
     const camposFaltantes = camposDiligenciados.filter(
-      (campo) => formulario[campo] === "" 
+      (campo) => formulario[campo] === ""
     );
 
     if (camposFaltantes.length > 0) {
       Swal.fire({
         icon: "warning",
         title: "Oops...",
-        text: `Faltan campos por diligenciar:  ${camposFaltantes}` ,
+        text: `Faltan campos por diligenciar:  ${camposFaltantes}`,
       });
     } else {
       //  logica para procesar el pago si todos los campos están diligenciados correctamente
-      // 
-      console.log("Pago realizado con éxito!");
-      console.log(formulario)
+      //
+      Swal.fire({
+        icon: "Success",
+        title: "¡Muy bien!",
+        text: "Pago realizado con exito",
+      });
+      console.log(formulario);
+      saveInfo(keyInfoUser, formulario, card);
+      navigate(`/${idMovie}/transaccion`);
     }
+  };
+  const handleClick = (rutaImagen) => {
+    // console.log('hice click', tarjeta)
+    // const card = tarjeta
+    // console.log(card)
+    setCard(rutaImagen);
   };
   return (
     <div className="containerPago">
@@ -132,25 +149,52 @@ const PagoBoletos = () => {
                 value={formulario.nombreTarjeta}
                 onChange={handleInputChange}
               />
-
-              <figure className="icons">
-                <img className="icon" src={visa} alt="visa" />
-                <img className="icon" src={master} alt="master" />
-                <img className="icon" src={amex} alt="amex" />
-              </figure>
             </div>
           </div>
 
           <div className="datos">
             <label>Número de la tarjeta</label>
-            <input
-              type="text"
-              name="numeroTarjeta"
-              placeholder="1234 1234 1234"
-              value={formulario.numeroTarjeta}
-              onChange={handleInputChange}
-            />
+            <div className="inputt">
+              <input
+                type="text"
+                name="numeroTarjeta"
+                placeholder="1234 1234 1234"
+                value={formulario.numeroTarjeta}
+                onChange={handleInputChange}
+              />
+              <figure className="icons">
+                <img
+                  className="icon"
+                  src={visa}
+                  alt="visa"
+                  onClick={() => handleClick(visa)}
+                />
+                <img
+                  className="icon"
+                  src={master}
+                  alt="master"
+                  onClick={() => handleClick(master)}
+                />
+                <img
+                  className="icon"
+                  src={amex}
+                  alt="amex"
+                  onClick={() => handleClick(amex)}
+                />
+              </figure>
+             
+            </div>
           </div>
+          <div className="cardSelect">
+                <span>Haz seleccionado: </span>
+              <figure>
+                {card ? (
+                  <img className="iconSelect" src={card} alt="tarjeta seleccionada" />
+                ) : (
+                  ""
+                )}
+              </figure>
+              </div>
           <div className="date">
             <div className="date1">
               <label>Seleccione una fecha</label>
@@ -180,10 +224,7 @@ const PagoBoletos = () => {
         <h1>Resumen de compra</h1>
         <div className="infpel">
           <figure>
-            <img
-              src={movie?.image}
-              alt="pelicula"
-            />
+            <img src={movie?.image} alt="pelicula" />
           </figure>
           <div className="deta">
             <span>Pelicula: {movie?.name} </span>
@@ -192,7 +233,7 @@ const PagoBoletos = () => {
             <span>Funcion: {functions[0].horarioInicio}</span>
             <span>Boletos: {boletos.cantBoletos}</span>
             <span>Número de sala: {sala[0]?.name}</span>
-            <span>Asientos: {asientos?.map( item => item).join(", ")}</span>
+            <span>Asientos: {asientos?.map((item) => item).join(", ")}</span>
           </div>
         </div>
 
@@ -200,8 +241,10 @@ const PagoBoletos = () => {
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
         <h2>Total (IVA incluido): {boletos.total}</h2>
-        <button className={botonActivo ? "activeButton" : "inactiveButton"}
-        onClick={handlePagarAhora}>
+        <button
+          className={botonActivo ? "activeButton" : "inactiveButton"}
+          onClick={handlePagarAhora}
+        >
           Pagar ahora
         </button>
       </div>

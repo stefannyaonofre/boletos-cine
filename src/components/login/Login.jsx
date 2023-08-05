@@ -7,7 +7,7 @@ import { getAdmin } from "../../services/getAdmin";
 import useSessionStorage from "../../hooks/useSessionStorage";
 import Swal from "sweetalert2";
 import useForm from "../../hooks/useForm";
-const Login = ({ onClose, signIn}) => {
+const Login = ({ onClose, signIn }) => {
   const key = "user";
   const [dataForm, handleChange, resetForm] = useForm();
   const [showPassword, setShowPassword] = useState(false); //estado bandera para la contraseña
@@ -25,9 +25,9 @@ const Login = ({ onClose, signIn}) => {
   // console.log(dataAdmin)
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(dataForm)
+    console.log(dataForm);
     const loggedUser = await getAdmin(dataForm);
-    console.log(loggedUser)
+    console.log(loggedUser);
     if (loggedUser) {
       Swal.fire(
         `¡Excelente ${loggedUser.user}!`,
@@ -38,11 +38,7 @@ const Login = ({ onClose, signIn}) => {
         saveInfo(key, loggedUser);
       });
     } else {
-      Swal.fire(
-        "Oopps!",
-        "El usuario o contraseña son incorrectas",
-        "error"
-      );
+      Swal.fire("Oopps!", "El usuario o contraseña son incorrectas", "error");
     }
     console.log(loggedUser);
     resetForm();
@@ -92,41 +88,6 @@ const Login = ({ onClose, signIn}) => {
         </div>
         <button className="login__button">Iniciar sesión</button>
       </form>
-      {/* <div onSubmit={handleSubmit} className="login">
-        <button className="login__cancel" onClick={onClose}>
-          <img src={cancel} alt="Close" />
-        </button>
-
-        <div className="login__text">
-          <h1>Bienvenido</h1>
-          <h3>Inicia sesión</h3>
-        </div>
-
-        <div className="login__email">
-          <label>Usuario</label>
-          <input type="text" placeholder="Ingresa tu usuario" />
-        </div>
-
-        <div className="login__password">
-          <label>Contraseña</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            placeholder="Ingresa tu contraseña"
-          />
-          <img
-            className="img"
-            src={showPassword ? eyeShow : eye}
-            onClick={() => setShowPassword(!showPassword)}
-          />
-         
-        </div>
-
-        <div className="login__checkbox">
-          <input type="checkbox" />
-          <label>Recuerdame</label>
-        </div>
-        <button className="login__button">Iniciar sesión</button>
-      </div> */}
     </>
   );
 };
