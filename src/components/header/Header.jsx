@@ -6,6 +6,7 @@ import { getCinemas } from "../../services/getCinemas";
 import { AppContext } from "../../routes/Router";
 import Login from "../login/Login";
 import { useNavigate } from "react-router";
+import { useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Header = ({ setGenders }) => {
@@ -20,6 +21,8 @@ const Header = ({ setGenders }) => {
     isLoginOpen,
     setIsLoginOpen,
   } = useContext(AppContext);
+  const location = useLocation();
+  const path = location.pathname;
 
   useEffect(() => {
     consultCinemas();
@@ -33,29 +36,26 @@ const Header = ({ setGenders }) => {
   const handleSubmit = (gender) => {
     setGenders(gender);
   };
-  
+
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
   };
 
   const handleLogoClick = () => {
     Swal.fire({
-      title: 'Serás redirigido a la página principal',
+      title: "Serás redirigido a la página principal",
       text: "¿Estás seguro? Deberás empezar de nuevo",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#2ecc71',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Estoy seguro'
+      confirmButtonColor: "#2ecc71",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Estoy seguro",
     }).then((result) => {
       if (result.isConfirmed) {
         navigate("/");
-      }else{
-        
+      } else {
       }
-    })
-    ;
-    
+    });
   };
   return (
     <>
@@ -64,32 +64,36 @@ const Header = ({ setGenders }) => {
           <img src={logo} />
           <span>CINE COLOMBIA</span>
         </div>
-        <div className="header__buttons">
-          <button
-            className="header__btn"
-            onClick={() => handleSubmit("Acción")}
-          >
-            Accion
-          </button>
-          <button
-            className="header__btn"
-            onClick={() => handleSubmit("Terror")}
-          >
-            Terror
-          </button>
-          <button
-            className="header__btn"
-            onClick={() => handleSubmit("Ciencia ficción")}
-          >
-            Ciencia Ficción
-          </button>
-          <button
-            className="header__btn"
-            onClick={() => handleSubmit("Comedia")}
-          >
-            Comedia
-          </button>
-        </div>
+        {path == "/" ? (
+          <div className="header__buttons">
+            <button
+              className="header__btn"
+              onClick={() => handleSubmit("Acción")}
+            >
+              Accion
+            </button>
+            <button
+              className="header__btn"
+              onClick={() => handleSubmit("Terror")}
+            >
+              Terror
+            </button>
+            <button
+              className="header__btn"
+              onClick={() => handleSubmit("Ciencia ficción")}
+            >
+              Ciencia Ficción
+            </button>
+            <button
+              className="header__btn"
+              onClick={() => handleSubmit("Comedia")}
+            >
+              Comedia
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="header__selects">
           <div className="header__teatros">
             <span>Cines cercanos</span>
