@@ -1,8 +1,10 @@
 import React from "react";
 import "./descargaBoletos.scss";
 import QRCode from "react-qr-code";
-
+import { v4 as uuidv4 } from "uuid";
 const DescargaBoletos = () => {
+   const uniqueRandomText = uuidv4().toUpperCase().substring(0,7);
+   const qrCodeValue ='www.google.com'; // `www.google.com/${uniqueRandomText}`
   return (
     <div className="containerQr">
       <h1>Boletos</h1>
@@ -33,10 +35,12 @@ const DescargaBoletos = () => {
         <QRCode
           size={256}
           style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value="www.google.com"
+          value={qrCodeValue}
           viewBox={`0 0 256 256`}
         />
       </div>
+      <p>{uniqueRandomText}</p>
+
     </div>
   );
 };

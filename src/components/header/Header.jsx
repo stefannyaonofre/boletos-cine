@@ -5,8 +5,11 @@ import "./header.scss";
 import { getCinemas } from "../../services/getCinemas";
 import { AppContext } from "../../routes/Router";
 import Login from "../login/Login";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Header = ({ setGenders }) => {
+  const navigate = useNavigate();
   const [dataCinemas, setDataCinemas] = useState([]);
   const {
     setSeleccionTeatro,
@@ -33,11 +36,29 @@ const Header = ({ setGenders }) => {
   const handleCloseLogin = () => {
     setIsLoginOpen(false);
   };
-
+  const handleLogoClick = () => {
+    Swal.fire({
+      title: 'Serás redirigido a la página principal',
+      text: "¿Estás seguro? Deberás empezar de nuevo",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#2ecc71',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Estoy seguro'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/");
+      }else{
+        
+      }
+    })
+    ;
+    
+  };
   return (
     <>
       <header className="header">
-        <div className="header__logo">
+        <div className="header__logo" onClick={handleLogoClick}>
           <img src={logo} />
           <span>CINE COLOMBIA</span>
         </div>
@@ -102,7 +123,9 @@ const Header = ({ setGenders }) => {
             <img src={user} />
           </figure>
         </div>
-        {isLoginOpen && <Login signIn={setIsLogin} onClose={handleCloseLogin} />}
+        {isLoginOpen && (
+          <Login signIn={setIsLogin} onClose={handleCloseLogin} />
+        )}
       </header>
     </>
   );

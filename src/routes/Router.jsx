@@ -10,6 +10,7 @@ import { createContext } from "react";
 import SeleccionBoletos from "../components/seleccionBoletos/SeleccionBoletos.jsx";
 import SeleccionAsientos from "../components/seleccionAsientos/SeleccionAsientos.jsx";
 import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
+import TransaccionExitosa from "../components/transaccionExitosa/TransaccionExitosa.jsx";
 
 export const AppContext = createContext({});
 
@@ -45,6 +46,7 @@ const Router = () => {
                 <Route path=":idMovie/boletos" element={<SeleccionBoletos/>}/>
                 <Route path=":idMovie/asientos" element={<SeleccionAsientos />}/>
                 <Route path=":idMovie/pagos" element={<PagoBoletos />}/>
+                <Route path=":idMovie/transaccion" element={<TransaccionExitosa />}/>
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
