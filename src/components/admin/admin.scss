@@ -80,6 +80,7 @@
 .mainAdmin {
   display: flex;
   margin: 80px;
+  justify-content: space-around;
   &__leftt {
     display: flex;
     flex-direction: column;

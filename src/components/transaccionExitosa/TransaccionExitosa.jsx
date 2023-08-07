@@ -59,7 +59,6 @@ const TransaccionExitosa = () => {
   }
 
   const handleTickets = () => {
-    console.log(codigoTransacion)
     const infoComprador = {
       email: pago.form.correo,
       codigoCompra: Number(codigoTransacion),
@@ -110,7 +109,7 @@ const TransaccionExitosa = () => {
         </div>
       </div>
       <div className="containerTransaccion__down">
-        <h1>Resumen de compra</h1>
+        <h3>Resumen de compra</h3>
         <div className="infpel">
           <figure>
             <img
@@ -132,7 +131,7 @@ const TransaccionExitosa = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h2>Total (IVA incluido): {boletos.total}</h2>
+        <h5>Total (IVA incluido): {boletos.total}</h5>
         <button onClick={handleTickets}>Descargar boletos</button>
       </div>
     </div>

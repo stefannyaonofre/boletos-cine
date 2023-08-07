@@ -51,7 +51,7 @@ const DetallePelicula = () => {
   }
 
   return (
-    <section className="detailss">
+    <section className="detailss d-flex justify-content-space-between">
       <article className="detailss__start">
         <div className="detailss__start-movie">
           <figure>
@@ -75,8 +75,8 @@ const DetallePelicula = () => {
           </div>
         </div>
 
-      <div className='detailss__start-info'>
-        <h1>Horarios disponibles: {teatroFecha.fecha}</h1>
+      <div className='detailss__start-info d-flex justify-content-center align-items-center'>
+        <h4>Horarios disponibles: {teatroFecha.fecha}</h4>
         <span>Elige el horario que prefieras</span>
         <span>{teatroFecha.teatro}</span>
         <div className='buttons'>
