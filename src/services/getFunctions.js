@@ -15,6 +15,7 @@ export const getFunctions = async() => {
 export const saveFunction = async(functions) => {
     try {
         const { data } = await axios.post(endpoints.urlFunctions, functions)
+        return data;
         
     } catch (error) {
         console.log(error);
