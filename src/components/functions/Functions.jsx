@@ -3,10 +3,14 @@ import React from 'react'
 const Functions = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+
+  const onSubmit = (data) => {
+    console.log(data)
+  }
+
   return (
     <main className="d-flex justify-content-center align-items-center vw-100 vh-100">
-      <form className="card p-5 bg-body-tertiary">
+      <form className="card p-5 bg-body-tertiary" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="form-label">
             <span>Id Pelicula</span>
@@ -14,6 +18,7 @@ const Functions = () => {
               type="number"
               className="form-control mt-2"
               placeholder="Escriba el id de la pelicula"
+              {...register('idPelicula', {required: true})}
             />
           </label>
         </div>
@@ -24,6 +29,7 @@ const Functions = () => {
               type="number"
               className="form-control mt-2"
               placeholder="Escriba el id de la sala"
+              {...register('idSala', {required: true})}
             />
           </label>
         </div>
@@ -34,6 +40,7 @@ const Functions = () => {
               type="text"
               className="form-control mt-2"
               placeholder="Escriba el horario de inicio"
+              {...register('horarioInicio', {required: true})}
             />
           </label>
         </div>
@@ -44,6 +51,7 @@ const Functions = () => {
               type="text"
               className="form-control mt-2"
               placeholder="Escriba el precio"
+              {...register('price', {required: true})}
             />
           </label>
         </div>
@@ -54,6 +62,7 @@ const Functions = () => {
               type="text"
               className="form-control mt-2"
               placeholder="Escriba la fecha de la función"
+              {...register('fecha', {required: true})}
             />
           </label>
         </div>

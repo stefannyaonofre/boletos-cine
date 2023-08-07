@@ -10,7 +10,7 @@ import useSessionStorage from "../../hooks/useSessionStorage";
 import { useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getVideoMovie } from "../../services/getVideoMovie";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Functions from "../functions/Functions";
 
 const Admin = () => {
@@ -149,8 +149,6 @@ const Admin = () => {
 
           <span>La fecha seleccionada fue: {fecha}</span>
           <h2>Edición</h2>
-
-          <Functions/>
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias

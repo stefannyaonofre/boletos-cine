@@ -5,9 +5,13 @@ const Teatro = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const onSubmit = (data) => {
+        console.log(data)
+      }
+
   return (
     <main className="d-flex justify-content-center align-items-center vw-100 vh-100">
-      <form className="card p-5 bg-body-tertiary">
+      <form className="card p-5 bg-body-tertiary" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
           <label className="form-label">
             <span>Nombre cinema</span>
