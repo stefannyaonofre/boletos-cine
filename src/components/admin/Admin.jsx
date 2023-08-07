@@ -10,13 +10,14 @@ import useSessionStorage from "../../hooks/useSessionStorage";
 import { useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getVideoMovie } from "../../services/getVideoMovie";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Functions from "../functions/Functions";
 
 const Admin = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [user, setUser] = useState({})
-  const key= "user"
+  const [user, setUser] = useState({});
+  const key = "user";
   const { getInfo } = useSessionStorage();
   const nameUser = getInfo(key);
   const { idMovie } = useParams();
@@ -28,7 +29,7 @@ const Admin = () => {
     getVideoMovie(idMovie).then((response) => {
       setVideoMovie(response?.key);
     });
-  },[])
+  }, []);
 
   const detailMovie = async () => {
     const detail = await getDetailsMovie(idMovie);
@@ -42,10 +43,9 @@ const Admin = () => {
   const onChangeCallback = (date) => {
     setSelectedDate(date);
     console.log("Fecha seleccionada:", date.toLocaleDateString("es"));
-    
   };
   const fecha = selectedDate ? selectedDate.toLocaleDateString("es") : null;
-  
+
   return (
     <>
       <header className="headerAdmin">
@@ -71,69 +71,72 @@ const Admin = () => {
         </div>
         <div className="headerAdmin__movie">
           <figure className="poster">
-            <img
-              src={movie?.image}
-              alt="movie"
-            />
+            <img src={movie?.image} alt="movie" />
           </figure>
           <figure className="video">
-          {videoMovie && (
-          <iframe
-            src={`https://www.youtube.com/embed/${videoMovie}`}
-            title={movie?.name}
-            frameBorder="0"
-            allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            key={movie?.id}
-          ></iframe>
-        )}
+            {videoMovie && (
+              <iframe
+                src={`https://www.youtube.com/embed/${videoMovie}`}
+                title={movie?.name}
+                frameBorder="0"
+                allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                key={movie?.id}
+              ></iframe>
+            )}
           </figure>
         </div>
       </header>
-      
-      <main className="mainAdmin">
+
+      <main className="mainAdmin d-flex justify-content-space-around g-5 vw-100">
         <section className="mainAdmin__leftt">
           <div>
-            <h1>Sipnosis</h1>
+            <h3>Sipnosis</h3>
             <p>{movie?.overview}</p>
           </div>
           <div>
-            <h2>Titulo original</h2>
+            <h5>Titulo original</h5>
             <span>{movie?.nameEnglish}</span>
           </div>
           <div>
-            <h2>País de origen</h2>
+            <h5>País de origen</h5>
             {movie.productionCountries?.map((item, index) => (
-                  <span key={index}>{item} {index < movie.productionCountries.length - 1 ? ", " : ""} </span>
-                ))}
-            {/* <span>{movie?.productionCountries}</span> */}
+              <span key={index}>
+                {item}{" "}
+                {index < movie.productionCountries.length - 1 ? ", " : ""}{" "}
+              </span>
+            ))}
           </div>
           <div>
-            <h2>Director o directora</h2>
-            <span>Nombre</span>
+            <h5>Duración</h5>
+            <span>{movie?.runtime}Min</span>
           </div>
           <div>
-            <h2>Actores</h2>
-            <span>Nombre</span>
+            <h5>Generos:</h5>
+            {movie?.gender?.map((item, index) => (
+              <span key={index}>
+                {item} {index < movie.gender.length - 1 ? ", " : ""}{" "}
+              </span>
+            ))}
           </div>
           <div>
-            <h2>Lenguaje</h2>
+            <h5>Lenguaje</h5>
             {movie.languages?.map((item, index) => (
-                  <span key={index}>{item} {index < movie.languages.length - 1 ? ", " : ""} </span>
-                ))}
+              <span key={index}>
+                {item} {index < movie.languages.length - 1 ? ", " : ""}{" "}
+              </span>
+            ))}
           </div>
         </section>
-        <section className="mainAdmin__rightt">
-         <span>Selecciona el calendario</span> 
-        <figure className="calendar-button" onClick={toggleCalendar}>
-            <img src={calendar} /> 
-            </figure> 
+        <section className="mainAdmin__rightt d-flex p-10 vw-50">
+          <span>Selecciona el calendario</span>
+          <figure className="calendar-button" onClick={toggleCalendar}>
+            <img src={calendar} />
+          </figure>
 
           {/* Calendario */}
           {showCalendar && (
-          
             <DatePicker
-            
               selected={selectedDate}
               onChange={onChangeCallback}
               dateFormat="dd/MM/yy" // Formato deseado "02/08/23"
@@ -142,15 +145,18 @@ const Admin = () => {
               className="react-datepicker-custom" // Clase personalizada para el input
               calendarClassName="react-datepicker-custom-calendar"
             />
-            
           )}
+
           <span>La fecha seleccionada fue: {fecha}</span>
           <h2>Edición</h2>
+
+          <Functions/>
+
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate
-            rerum eius expedita facilis magni odio, ratione quaerat perspiciatis
-            eveniet ipsa labore quam eum blanditiis. Quos quas quaerat modi
-            ipsam debitis.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
+            numquam libero voluptas sint reiciendis, quod quidem, veritatis
+            illum ut sed quo minus tenetur laboriosam deleniti voluptatem
+            doloribus iusto quaerat necessitatibus.
           </p>
         </section>
       </main>

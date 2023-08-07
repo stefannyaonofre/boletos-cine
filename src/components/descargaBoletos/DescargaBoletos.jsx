@@ -44,7 +44,7 @@ const DescargaBoletos = () => {
    return (
     <div className="descargaBoletos">
       <div className="containerQr">
-      <h1>Boletos</h1>
+      <h2>Boletos</h2>
       <div className="infpel">
         <figure>
           <img

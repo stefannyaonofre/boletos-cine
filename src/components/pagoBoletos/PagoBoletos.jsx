@@ -151,7 +151,7 @@ const PagoBoletos = () => {
   return (
     <div className="containerPago">
       <div className="containerPago__left">
-        <h1>Información personal</h1>
+        <h2>Información personal</h2>
         <span>Completa los datos del formulario para realizar el pago.</span>
         <div className="containerPago__left-info">
           <div className="datos">
@@ -178,7 +178,7 @@ const PagoBoletos = () => {
             </div>
           </div>
 
-          <div className="datos">
+          <div className="datos d-flex justify-content-center">
             <label>Número de la tarjeta</label>
             <div className="inputt">
               <input
@@ -252,7 +252,7 @@ const PagoBoletos = () => {
       </div>
 
       <div className="containerPago__right">
-        <h1>Resumen de compra</h1>
+        <h3>Resumen de compra</h3>
         <div className="infpel">
           <figure>
             <img src={movie?.image} alt="pelicula" />
@@ -271,7 +271,7 @@ const PagoBoletos = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h2>Total (IVA incluido): {boletos.total}</h2>
+        <h5>Total (IVA incluido): {boletos.total}</h5>
         <button
           className={botonActivo ? "activeButton" : "inactiveButton"}
           onClick={handlePagarAhora}

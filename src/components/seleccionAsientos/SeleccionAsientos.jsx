@@ -161,7 +161,7 @@ const SeleccionAsientos = () => {
       </div>
 
       <div className="chair__right">
-        <h1>Resumen de compra</h1>
+        <h3>Resumen de compra</h3>
         <div className="infpel">
           <figure>
             <img src={movie?.image} alt="pelicula" />
@@ -180,7 +180,7 @@ const SeleccionAsientos = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h2>Total (IVA incluido): {boletos.total}</h2>
+        <h5>Total (IVA incluido): {boletos.total}</h5>
         <button className={botonActivo ? "activeButton" : "inactiveButton"}  onClick={pagoBoletos}>Continuar</button>
          
       </div>

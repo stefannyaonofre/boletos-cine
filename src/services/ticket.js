@@ -14,7 +14,7 @@ export const getTicket = async() => {
 export const saveTicket = async(ticket) =>{
     try {
 
-        const { data } = await axios.post(endpoints.urlTickect, {...ticket});
+        const { data } = await axios.post(endpoints.urlTickect, ticket);
         return data;
         
     } catch (error) {

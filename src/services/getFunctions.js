@@ -11,3 +11,13 @@ export const getFunctions = async() => {
         return []
     }
 }
+
+export const saveFunction = async(functions) => {
+    try {
+        const { data } = await axios.post(endpoints.urlFunctions, functions)
+        
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+}
