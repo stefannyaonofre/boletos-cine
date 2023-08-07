@@ -68,7 +68,7 @@ const DetallePelicula = () => {
               <button>{movie?.runtime} Min</button>
               <button>
                 {movie?.gender?.map((item, index) => (
-                  <span key={index}>{item}, </span>
+                  <span key={index}>{item} {index < movie.gender.length - 1 ? ", " : ""} </span>
                 ))}
               </button>
             </div>

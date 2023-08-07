@@ -67,8 +67,9 @@
       top: 90px;
       left: 0;
       border-radius: 10px;
+      object-fit: cover;
     }
-    .video img {
+    .video iframe {
       width: 670px;
       height: 400px;
       margin: 20px;

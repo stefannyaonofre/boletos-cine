@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../components/home/Home.jsx";
 import PublicRouter from "./PublicRouter.jsx";
@@ -13,6 +13,7 @@ import PagoBoletos from "../components/pagoBoletos/PagoBoletos.jsx";
 import TransaccionExitosa from "../components/transaccionExitosa/TransaccionExitosa.jsx";
 import PanelAdmin from "../components/panelAdmin/PanelAdmin.jsx";
 import DescargaBoletos from "../components/descargaBoletos/DescargaBoletos.jsx";
+import useSessionStorage from "../hooks/useSessionStorage.jsx";
 
 export const AppContext = createContext({});
 
@@ -23,6 +24,20 @@ const Router = () => {
   const [seleccionTeatro, setSeleccionTeatro] = useState();
   const [seleccionFecha, setSeleccionFecha] = useState();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const key= "user";
+  const {getInfo} = useSessionStorage()
+  const user = getInfo(key);
+
+  useEffect(() => {
+    if(user?.name){
+      setIsLogin(true)
+    }else{
+      setIsLogin(false)
+    }
+  },[isLogin])
+
+
+
   return (
     <AppContext.Provider
       value={{

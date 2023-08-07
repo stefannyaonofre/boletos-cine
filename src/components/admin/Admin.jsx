@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./admin.scss";
 import logo from "../../assets/logo.jpg";
 import admin from "../../assets/admin.svg";
@@ -7,6 +7,9 @@ import calendar from "../../assets/calendar.svg";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useSessionStorage from "../../hooks/useSessionStorage";
+import { useParams } from "react-router-dom";
+import { getDetailsMovie } from "../../services/getDetailsMovie";
+import { getVideoMovie } from "../../services/getVideoMovie";
 
 
 const Admin = () => {
@@ -15,7 +18,22 @@ const Admin = () => {
   const [user, setUser] = useState({})
   const key= "user"
   const { getInfo } = useSessionStorage();
-  const nameUser = getInfo(key)
+  const nameUser = getInfo(key);
+  const { idMovie } = useParams();
+  const [movie, setMovie] = useState([]);
+  const [videoMovie, setVideoMovie] = useState("");
+
+  useEffect(() => {
+    detailMovie();
+    getVideoMovie(idMovie).then((response) => {
+      setVideoMovie(response?.key);
+    });
+  },[])
+
+  const detailMovie = async () => {
+    const detail = await getDetailsMovie(idMovie);
+    setMovie(detail);
+  };
 
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar);
@@ -54,15 +72,21 @@ const Admin = () => {
         <div className="headerAdmin__movie">
           <figure className="poster">
             <img
-              src="https://www.themoviedb.org/t/p/original/fNtqD4BTFj0Bgo9lyoAtmNFzxHN.jpg"
+              src={movie?.image}
               alt="movie"
             />
           </figure>
           <figure className="video">
-            <img
-              src="https://i.ytimg.com/vi/fOLU-J0veQ0/maxresdefault.jpg"
-              alt="video"
-            />
+          {videoMovie && (
+          <iframe
+            src={`https://www.youtube.com/embed/${videoMovie}`}
+            title={movie?.name}
+            frameBorder="0"
+            allow="accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            key={movie?.id}
+          ></iframe>
+        )}
           </figure>
         </div>
       </header>
@@ -71,20 +95,18 @@ const Admin = () => {
         <section className="mainAdmin__leftt">
           <div>
             <h1>Sipnosis</h1>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-              quos aliquam molestias fuga at facilis, corrupti praesentium
-              minima ipsam reiciendis laudantium. Quos, pariatur fugiat quae
-              corrupti autem temporibus officiis maxime.
-            </p>
+            <p>{movie?.overview}</p>
           </div>
           <div>
             <h2>Titulo original</h2>
-            <span>Barbie</span>
+            <span>{movie?.nameEnglish}</span>
           </div>
           <div>
             <h2>País de origen</h2>
-            <span>Estados Unidos</span>
+            {movie.productionCountries?.map((item, index) => (
+                  <span key={index}>{item} {index < movie.productionCountries.length - 1 ? ", " : ""} </span>
+                ))}
+            {/* <span>{movie?.productionCountries}</span> */}
           </div>
           <div>
             <h2>Director o directora</h2>
@@ -96,7 +118,9 @@ const Admin = () => {
           </div>
           <div>
             <h2>Lenguaje</h2>
-            <span>Español</span>
+            {movie.languages?.map((item, index) => (
+                  <span key={index}>{item} {index < movie.languages.length - 1 ? ", " : ""} </span>
+                ))}
           </div>
         </section>
         <section className="mainAdmin__rightt">

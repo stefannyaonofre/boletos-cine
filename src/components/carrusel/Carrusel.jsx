@@ -19,7 +19,7 @@ const Carrusel = () => {
     const data = await getMovies();
     const list = [];
     for (let i = 0; i < data.length; i++) {
-      const listId = await getDetailsMovie(data[i].id);
+      const listId = await getDetailsMovie(data[i]?.id);
       list.push(listId);
     }
     setListMovies(list);
@@ -48,9 +48,9 @@ const Carrusel = () => {
           className="swiper_container"
           loopedSlides={listMovies.length}
         >
-          {listMovies.map((data) => (
+          {listMovies?.map((data) => (
             <SwiperSlide key={data.id}>
-              <CardCarrusel movie={data} />
+              <CardCarrusel  movie={data} />
             </SwiperSlide>
           ))}
         </Swiper>

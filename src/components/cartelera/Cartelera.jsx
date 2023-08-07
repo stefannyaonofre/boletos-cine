@@ -83,7 +83,7 @@ const Cartelera = ({ genders }) => {
                 <br />
                 <span>
                   Género:{" "}
-                  {movie.gender.map((item, index) => (
+                  {movie.gender?.map((item, index) => (
                     <span key={index}>{item} {index < movie.gender.length - 1 ? ", " : ""}</span>
                   ))}
                 </span>
