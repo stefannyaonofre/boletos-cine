@@ -13,5 +13,6 @@ export const endpoints = {
     urlMovies: `${URL_API_MOVIES}?api_key=${API_KEY}&language=es-ES`,
     urlMovie:(id)=>`${URL_API_MOVIE}${id}?api_key=${API_KEY}&language=es-ES`,
     urlImage: `${URL_IMAGE}`,
-    urlVideo:(id)=> `${URL_API_MOVIE}${id}/videos?api_key=${API_KEY}&language=es-ES`
+    urlVideo:(id)=> `${URL_API_MOVIE}${id}/videos?api_key=${API_KEY}&language=es-ES`,
+    ulrFunctionsCinema: (idPelicula, idCinema) => `${URL_API_JSON}functions?idPelicula=${idPelicula}&cinemasId=${idCinema}`
 }
