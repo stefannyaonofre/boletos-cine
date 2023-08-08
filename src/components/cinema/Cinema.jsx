@@ -1,12 +1,30 @@
 import React from 'react'
-import useForm from '../../hooks/useForm'
+import { useForm } from 'react-hook-form';
+import { saveCinema } from '../../services/getCinemas';
 
 const Teatro = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data)
+    const onSubmit = async (data) => {
+        const response = await saveCinema(data);
+        if (response) {
+          Swal.fire(
+            "Cinema Registrad",
+            "El Cinema fue registrado con exito",
+            "success"
+          );
+        }else{
+          Swal.fire(
+            'Cinema no registrado',
+            'Hubo un problema al registrar el Cinema',
+            'error'
+          )
+          reset({
+            name: "",
+            cantidadSalas: ""
+          })
+        }
       }
 
   return (
@@ -19,6 +37,7 @@ const Teatro = () => {
               type="text"
               className="form-control mt-2"
               placeholder="Escriba el nombre del cinema"
+              {...register('name', {required: true})}
             />
           </label>
         </div>
@@ -29,6 +48,7 @@ const Teatro = () => {
               type="number"
               className="form-control mt-2"
               placeholder="Escriba la cantidad de salas"
+              {...register('cantidadSalas', {required: true})}
             />
           </label>
         </div>

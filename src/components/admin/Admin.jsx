@@ -11,6 +11,11 @@ import { useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getVideoMovie } from "../../services/getVideoMovie";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { getFunctions } from "../../services/getFunctions";
+import { getCinemas } from "../../services/getCinemas";
+import { Accordion } from "react-bootstrap";
+import { getSalas } from "../../services/getSalas";
+import CardFunctions from "../cardFunctions/CardFunctions";
 
 const Admin = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -22,17 +27,46 @@ const Admin = () => {
   const { idMovie } = useParams();
   const [movie, setMovie] = useState([]);
   const [videoMovie, setVideoMovie] = useState("");
+  const [cinemas, setCinemas] = useState([]);
+  const [salas, setSalas] = useState([]);
 
   useEffect(() => {
     detailMovie();
     getVideoMovie(idMovie).then((response) => {
       setVideoMovie(response?.key);
     });
+    // filtrarFunction(1);
+    funcionePelicula()
+    getCinema();
   }, []);
 
   const detailMovie = async () => {
     const detail = await getDetailsMovie(idMovie);
     setMovie(detail);
+  };
+
+  // const filtrarFunction = async (idCinema) => {
+  //   const response = await getFunctions();
+  //   const salas = await getSalas();
+  //   const filterSalas = salas.filter((sala) => sala.idCinema == idCinema);
+  //   setSalas(filterSalas);
+
+  //   const filterFunciones = response.filter((functionItem) => {
+  //     return filterSalas.some((sala) => sala.id === functionItem.idSala);
+  //   });
+  //   return filterFunciones;
+  // };
+
+  const funcionePelicula = async (idMovie, idCinema) => {
+
+    // const functions = await getFunctions();
+    // const filter = functions.filter((item) => item.idPelicula == idMovie);
+    // console.log(filter)
+  }
+
+  const getCinema = async () => {
+    const response = await getCinemas();
+    setCinemas(response);
   };
 
   const toggleCalendar = () => {
@@ -87,7 +121,7 @@ const Admin = () => {
         </div>
       </header>
 
-      <main className="mainAdmin d-flex justify-content-space-around g-5">
+      <main className="mainAdmin d-flex justify-content-around g-5">
         <section className="mainAdmin__leftt">
           <div>
             <h3>Sipnosis</h3>
@@ -127,61 +161,27 @@ const Admin = () => {
             ))}
           </div>
         </section>
-        <section className="mainAdmin__rightt">
-          <span>Selecciona el calendario</span>
-          <figure className="calendar-button" onClick={toggleCalendar}>
-            <img src={calendar} />
-          </figure>
-
-          {/* Calendario */}
-          {showCalendar && (
-            <DatePicker
-              selected={selectedDate}
-              onChange={onChangeCallback}
-              dateFormat="dd/MM/yy" // Formato deseado "02/08/23"
-              minDate={new Date()}
-              placeholderText="01/08/23"
-              className="react-datepicker-custom" // Clase personalizada para el input
-              calendarClassName="react-datepicker-custom-calendar"
-            />
-          )}
-
-          <span>La fecha seleccionada fue: {fecha}</span>
-          <h2>Edición</h2>
-
-          <div className="accordion" id="accordionExample">
-            <div className="accordion-item">
-              <h2 className="accordion-header">
-                <button
-                  className="accordion-button"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Accordion Item #1
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                className="accordion-collapse collapse show"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body">
-                  <strong>This is the first item's accordion body.</strong> It
-                  is shown by default, until the collapse plugin adds the
-                  appropriate classes that we use to style each element. These
-                  classes control the overall appearance, as well as the showing
-                  and hiding via CSS transitions. You can modify any of this
-                  with custom CSS or overriding our default variables. It's also
-                  worth noting that just about any HTML can go within the{" "}
-                  <code>.accordion-body</code>, though the transition does limit
-                  overflow.
-                </div>
-              </div>
-            </div>
+        <section className="mainAdmin__rightt d-flex bg-body-secondary g-10">
+          <div className="d-flex justify-content-around align-items-center p-10">
+            <span>FUNCIONES POR MULTIPLEX</span>
+            <button type="button" className="btn btn-outline-primary">Nuevo Cinema + </button>
           </div>
+          <div className="d-flex flex-column align-items-center">
+          {cinemas?.map((cinema, index) => (
+            <Accordion
+              defaultActiveKey="0"
+              key={index}
+              className="bg-body-secondary"
+            >
+              <Accordion.Item eventKey="1">
+                <Accordion.Header>{cinema?.name}</Accordion.Header>
+                <Accordion.Body>
+                 <CardFunctions idPelicula={idMovie} idCinema={cinema.id}/>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          ))}
+          </div>   
         </section>
       </main>
     </>

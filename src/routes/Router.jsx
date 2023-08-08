@@ -74,7 +74,7 @@ const Router = () => {
               </Route>
             </Route>
             <Route element={<PrivateRouter isAutenticate={isLogin} />}>
-              <Route path="admin" element={<PanelAdmin />}>
+              <Route path="admin" element={<PanelAdmin setGenders={setGenders} />}>
                 <Route index element={<Cartelera genders={genders}/>} />
                 <Route path=":idMovie" element={<Admin />}/>
               </Route>
