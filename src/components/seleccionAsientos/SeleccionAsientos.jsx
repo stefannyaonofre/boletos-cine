@@ -8,6 +8,7 @@ import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getSalas } from "../../services/getSalas";
 import { getTicket } from "../../services/ticket";
 import Swal from "sweetalert2";
+import { numberToMoney } from "../../utils/location";
 
 const SeleccionAsientos = () => {
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
@@ -180,7 +181,7 @@ const SeleccionAsientos = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h5>Total (IVA incluido): {boletos.total}</h5>
+        <h5>Total (IVA incluido): {numberToMoney(boletos.total)}</h5>
         <button className={botonActivo ? "activeButton" : "inactiveButton"}  onClick={pagoBoletos}>Continuar</button>
          
       </div>

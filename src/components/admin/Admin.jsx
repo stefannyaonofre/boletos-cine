@@ -88,7 +88,7 @@ const Admin = () => {
         </div>
       </header>
 
-      <main className="mainAdmin d-flex justify-content-space-around g-5 vw-100">
+      <main className="mainAdmin d-flex justify-content-space-around g-5">
         <section className="mainAdmin__leftt">
           <div>
             <h3>Sipnosis</h3>
