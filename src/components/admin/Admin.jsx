@@ -11,7 +11,6 @@ import { useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getVideoMovie } from "../../services/getVideoMovie";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Functions from "../functions/Functions";
 
 const Admin = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -88,7 +87,7 @@ const Admin = () => {
         </div>
       </header>
 
-      <main className="mainAdmin d-flex justify-content-space-around g-5 vw-100">
+      <main className="mainAdmin d-flex justify-content-space-around g-5">
         <section className="mainAdmin__leftt">
           <div>
             <h3>Sipnosis</h3>
@@ -128,7 +127,7 @@ const Admin = () => {
             ))}
           </div>
         </section>
-        <section className="mainAdmin__rightt d-flex p-10 vw-50">
+        <section className="mainAdmin__rightt">
           <span>Selecciona el calendario</span>
           <figure className="calendar-button" onClick={toggleCalendar}>
             <img src={calendar} />
@@ -150,12 +149,39 @@ const Admin = () => {
           <span>La fecha seleccionada fue: {fecha}</span>
           <h2>Edición</h2>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias
-            numquam libero voluptas sint reiciendis, quod quidem, veritatis
-            illum ut sed quo minus tenetur laboriosam deleniti voluptatem
-            doloribus iusto quaerat necessitatibus.
-          </p>
+          <div className="accordion" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne"
+                >
+                  Accordion Item #1
+                </button>
+              </h2>
+              <div
+                id="collapseOne"
+                className="accordion-collapse collapse show"
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It
+                  is shown by default, until the collapse plugin adds the
+                  appropriate classes that we use to style each element. These
+                  classes control the overall appearance, as well as the showing
+                  and hiding via CSS transitions. You can modify any of this
+                  with custom CSS or overriding our default variables. It's also
+                  worth noting that just about any HTML can go within the{" "}
+                  <code>.accordion-body</code>, though the transition does limit
+                  overflow.
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </>
