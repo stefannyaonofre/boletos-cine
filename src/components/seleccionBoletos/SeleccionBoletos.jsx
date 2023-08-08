@@ -3,6 +3,7 @@ import "./seleccionBoletos.scss";
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDetailsMovie } from '../../services/getDetailsMovie';
 import useSessionStorage from '../../hooks/useSessionStorage';
+import { numberToMoney } from '../../utils/location';
 
 const SeleccionBoletos = () => {
   const [publico, setPublico] = useState(0);
@@ -89,7 +90,7 @@ const SeleccionBoletos = () => {
           <button className="buttonPlus" onClick={() => handlePlus("PUBLICO")}>
             +
           </button>
-          ${totalPublico}
+          {numberToMoney(totalPublico)}
         </div>
 
         <div className="div">
@@ -101,7 +102,7 @@ const SeleccionBoletos = () => {
           <button className="buttonPlus" onClick={() => handlePlus("MAYOR")}>
             +
           </button>
-          ${totalMayor}
+          {numberToMoney(totalMayor)}
         </div>
       </div>
     </div>
@@ -123,7 +124,7 @@ const SeleccionBoletos = () => {
       <span>
         Se realizara un cargo por servicio por cada boleto dentro de la orden
       </span>
-      <h5>Total (IVA incluido): ${totalBoletos}</h5>
+      <h5>Total (IVA incluido): {numberToMoney(totalBoletos)}</h5>
       <button  className={botonActivo ? "activeButton" : "inactiveButton"} onClick={continueSelection}>Continuar</button>
     </div>
   </div>

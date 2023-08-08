@@ -47,7 +47,6 @@
   &__movie {
     display: flex;
     position: relative;
-    gap: 90px;
     justify-content: space-around;
     .poster {
       width: 400px;
@@ -137,10 +136,10 @@
   }
 }
 
+
 .accordion{
   width: 450px;
 }
-
 
 @media screen and (max-width: 1030px) {
   .headerAdmin {
@@ -151,20 +150,21 @@
     color: $color-primary;
     padding: 20px 0 20px 20px;
     overflow: visible;
-  
+
     &__movie {
       display: flex;
       position: relative;
       justify-content: space-around;
+      flex-direction: column-reverse;
+      align-items: center;
       gap: 10px;
       .poster {
         width: 400px;
-        height: 300px;
         overflow: visible; /* para que se desborde la imagen del poster */
         position: relative;
         margin-top: 20px;
       }
-  
+
       .poster img {
         width: 100%;
         height: 100%;
@@ -172,13 +172,14 @@
         transform: scaleY(1.2);
         transform-origin: bottom;
         position: absolute;
-        top: 90px;
+        top: 60px;
         left: 0;
         border-radius: 10px;
       }
-      .video{
+      .video {
         display: flex;
         align-items: center;
+        width: 600px;
       }
       .video img {
         width: 270px;
@@ -187,4 +188,4 @@
       }
     }
   }
-  }
+}

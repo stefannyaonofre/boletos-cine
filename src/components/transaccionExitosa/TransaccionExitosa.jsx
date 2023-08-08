@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import { getSalas } from "../../services/getSalas";
 import { saveTicket } from "../../services/ticket";
+import { numberToMoney } from "../../utils/location";
 const TransaccionExitosa = () => {
   const key = "teatroFecha";
   const keyFunction = "function";
@@ -79,7 +80,7 @@ const TransaccionExitosa = () => {
     <div className="containerTransaccion">
       <div className="containerTransaccion__up">
         <div className="transaccion">
-          <BsCheckCircle />
+          <BsCheckCircle style={{ color: '#2ecc71',  strokeWidth: '1', fontSize: '20px' }}/>
           <span>¡Transacción exitosa!</span>
         </div>
 
@@ -96,7 +97,7 @@ const TransaccionExitosa = () => {
             </div>
             <div>
               <span>Total</span>
-              <span>${boletos.total}</span>
+              <span>{numberToMoney(boletos.total)}</span>
             </div>
             <div>
               <span>Método de pago</span>
@@ -131,7 +132,7 @@ const TransaccionExitosa = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h5>Total (IVA incluido): {boletos.total}</h5>
+        <h5>Total (IVA incluido): {numberToMoney(boletos.total)}</h5>
         <button onClick={handleTickets}>Descargar boletos</button>
       </div>
     </div>

@@ -21,6 +21,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
+        svg{
+          border: green;
+        }
     }
     .infCompra{
         display: flex;

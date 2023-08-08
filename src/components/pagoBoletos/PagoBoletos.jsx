@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { getDetailsMovie } from "../../services/getDetailsMovie";
 import useSessionStorage from "../../hooks/useSessionStorage";
 import { getSalas } from "../../services/getSalas";
+import { numberToMoney } from "../../utils/location";
 
 const PagoBoletos = () => {
   const [botonActivo, setBotonActivo] = useState(false);
@@ -271,7 +272,7 @@ const PagoBoletos = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h5>Total (IVA incluido): {boletos.total}</h5>
+        <h5>Total (IVA incluido): {numberToMoney(boletos.total)}</h5>
         <button
           className={botonActivo ? "activeButton" : "inactiveButton"}
           onClick={handlePagarAhora}
