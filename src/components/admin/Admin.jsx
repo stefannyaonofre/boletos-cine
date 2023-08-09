@@ -80,7 +80,6 @@ const Admin = ({onClose}) => {
   };
   const fecha = selectedDate ? selectedDate.toLocaleDateString("es") : null;
   const handleClick = () => {
-    console.log('hice click')
     setOpened(true)
 
 }

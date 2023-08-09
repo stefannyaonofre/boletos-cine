@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { saveCinema } from "../../services/getCinemas";
 import cancel from "../../assets/cancel.svg";
 import "./cinema.scss"
+import Swal from "sweetalert2";
 const Teatro = ({ onClose }) => {
   const {
     register,
@@ -14,10 +15,14 @@ const Teatro = ({ onClose }) => {
     const response = await saveCinema(data);
     if (response) {
       Swal.fire(
-        "Cinema Registrad",
+        "Cinema Registrado",
         "El Cinema fue registrado con exito",
         "success"
       );
+      reset({
+        name: "",
+        cantidadSalas: "",
+      });
     } else {
       Swal.fire(
         "Cinema no registrado",
