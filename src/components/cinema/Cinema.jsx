@@ -52,7 +52,7 @@ const Teatro = () => {
             />
           </label>
         </div>
-        <button type="submit" className="btn btn-success">Agregar Función</button>
+        <button type="submit" className="btn btn-success">Agregar Cinema</button>
       </form>
     </main>
   )
