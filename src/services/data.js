@@ -9,8 +9,10 @@ export const endpoints = {
     urlFunctions: `${URL_API_JSON}functions`,
     urlTickect:`${URL_API_JSON}tikect`,
     urlAdmin: `${URL_API_JSON}admin`,
+    urlSala: `${URL_API_JSON}salas`,
     urlMovies: `${URL_API_MOVIES}?api_key=${API_KEY}&language=es-ES`,
     urlMovie:(id)=>`${URL_API_MOVIE}${id}?api_key=${API_KEY}&language=es-ES`,
     urlImage: `${URL_IMAGE}`,
-    urlVideo:(id)=> `${URL_API_MOVIE}${id}/videos?api_key=${API_KEY}&language=es-ES`
+    urlVideo:(id)=> `${URL_API_MOVIE}${id}/videos?api_key=${API_KEY}&language=es-ES`,
+    ulrFunctionsCinema: (idPelicula, idCinema) => `${URL_API_JSON}functions?idPelicula=${idPelicula}&cinemasId=${idCinema}`
 }

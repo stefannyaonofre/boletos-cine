@@ -1,27 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./seleccionAsientos.scss";
 import Asiento from "../asiento/Asiento";
 import { MdChair } from "react-icons/md";
+import useSessionStorage from "../../hooks/useSessionStorage";
+import { useNavigate, useParams } from "react-router-dom";
+import { getDetailsMovie } from "../../services/getDetailsMovie";
+import { getSalas } from "../../services/getSalas";
+import { getTicket } from "../../services/ticket";
+import Swal from "sweetalert2";
+import { numberToMoney } from "../../utils/location";
+
 const SeleccionAsientos = () => {
   const [asientosSeleccionados, setAsientosSeleccionados] = useState([]);
-  const generarAsientos = () => {
-    const filas = "ABCDE"; // Letras de las filas A a E
-    const numeroAsientosPorFila = 6; // Número de asientos por fila-columna
-    const asientosOcupados = ["B2", "B3", "B4"]; // Asientos ocupados (ejemplo)
+  const [movie, setMovie] = useState([]);
+  const [sala, setSala] = useState([]);
+  const [sillasOcupadas, setSillasOcupadas] = useState([]);
+  const key = "teatroFecha";
+  const keyFunction = "function";
+  const keyBoletos = "boletos";
+  const keyAsientos = "asientos";
+  const { getInfo, saveInfo } = useSessionStorage();
+  const { idMovie } = useParams();
+  const teatroFecha = getInfo(key);
+  const functions = getInfo(keyFunction);
+  const boletos = getInfo(keyBoletos);
+  const [seleccionAsientos, setSeleccionAsientos] = useState([]);
+  const navigate = useNavigate();
+  const [botonActivo, setBotonActivo] = useState(false)
 
+
+  useEffect(() => {
+    detailMovie();
+    consultarSala();
+    consultarAsientosOcupados();
+    if(seleccionAsientos.length==boletos.cantBoletos){
+      setBotonActivo(true)
+    }else{
+      setBotonActivo(false)
+    }
+  }, [seleccionAsientos]);
+
+  const detailMovie = async () => {
+    const detail = await getDetailsMovie(idMovie);
+    setMovie(detail);
+  };
+
+  const consultarSala = async () => {
+    const detailSala = await getSalas();
+    const filter = detailSala.filter((item) => item.id == functions[0].idSala);
+    setSala(filter);
+  };
+
+  const consultarAsientosOcupados = async () => {
+    const response = await getTicket();
+    const ocupadas = [...response?.map((item) => item.codigoSilla)].flat();
+    setSillasOcupadas(ocupadas);
+  };
+
+  const generarAsientos = () => {
+    const filas = "ABCDE";
+    const numeroAsientosPorFila = 6;
+    const asientosOcupados = sillasOcupadas;
     const asientos = [];
     for (let i = 0; i < filas.length; i++) {
       const fila = filas[i];
       for (let numero = 1; numero <= numeroAsientosPorFila; numero++) {
         const numeroAsiento = `${fila}${numero}`;
-        const estado = asientosOcupados.includes(numeroAsiento)
+        const estado = asientosOcupados?.includes(numeroAsiento)
           ? "ocupado"
           : "disponible";
         asientos.push({ letra: fila, numero, estado });
       }
     }
-    console.log(asientos);
-
     return asientos;
   };
 
@@ -29,20 +79,36 @@ const SeleccionAsientos = () => {
 
   const handleSeleccionarAsiento = (letra, numero) => {
     const asientoSeleccionado = `${letra}${numero}`;
-    // const asientoActual = asientosDisponibles.find((asiento) => asiento.letra === letra && asiento.numero === numero);
 
     if (asientosSeleccionados.includes(asientoSeleccionado)) {
-      // Si el asiento ya está seleccionado, se deselecciona
       setAsientosSeleccionados(
         asientosSeleccionados.filter(
           (asiento) => asiento !== asientoSeleccionado
         )
       );
-    } else {
-      // Si el asiento no está seleccionado, se agrega a la lista
+      setSeleccionAsientos(
+        asientosSeleccionados.filter(
+          (asiento) => asiento !== asientoSeleccionado
+        )
+      );
+    } else if (seleccionAsientos.length < boletos.cantBoletos) {
+      setSeleccionAsientos([...asientosSeleccionados, asientoSeleccionado]);
       setAsientosSeleccionados([...asientosSeleccionados, asientoSeleccionado]);
+      
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `No puede seleccionar mas asientos, debido a que ya tiene la cantidad de boletos con los asientos`,
+      });
     }
   };
+
+  const pagoBoletos = () => {
+    saveInfo(keyAsientos, seleccionAsientos);
+    navigate(`/${idMovie}/pagos`);
+  };
+
   return (
     <div className="chair">
       <div className="chair__left">
@@ -80,7 +146,8 @@ const SeleccionAsientos = () => {
                 key={`${asiento.letra}${asiento.numero}`}
                 letra={asiento.letra}
                 numero={asiento.numero}
-                estado={ //si A1 existe en asientos seleccionados, entonces el as ha sido sele por el user
+                estado={
+                  //si A1 existe en asientos seleccionados, entonces el as ha sido sele por el user
                   asientosSeleccionados.includes(
                     `${asiento.letra}${asiento.numero}`
                   )
@@ -92,30 +159,21 @@ const SeleccionAsientos = () => {
             ))}
           </div>
         </div>
-        {/* <div className="asientos-seleccionados">
-          <h2>Asientos seleccionados:</h2>
-          <p>{asientosSeleccionados.join(", ")}</p>
-        </div> */}
       </div>
 
-      {/* <!-- /* ------------------- */}
-
       <div className="chair__right">
-        <h1>Resumen de compra</h1>
+        <h3>Resumen de compra</h3>
         <div className="infpel">
           <figure>
-            <img
-              src="https://dca.gob.gt/noticias-guatemala-diario-centro-america/wp-content/uploads/2022/04/Strange-estreno-guatemala-DCA.jpeg"
-              alt="pelicula"
-            />
+            <img src={movie?.image} alt="pelicula" />
           </figure>
           <div className="deta">
-            <span>Pelicula: Doctor Strange </span>
-            <span>Cinema: Marco plaza del mar</span>
-            <span>Fecha: 07 de julio de 2023</span>
-            <span>Funcion: 7:30 pm</span>
-            <span>Boletos:se pinta numero boletos</span>
-            <span>Número de sala:se pinta numero de sala</span>
+            <span>Pelicula: {movie?.name} </span>
+            <span>Cinema: {teatroFecha.teatro}</span>
+            <span>Fecha: {teatroFecha.fecha}</span>
+            <span>Funcion: {functions[0].horarioInicio}</span>
+            <span>Boletos: {boletos.cantBoletos}</span>
+            <span>Número de sala: {sala[0]?.name}</span>
             <span>Asientos:{asientosSeleccionados.join(", ")}</span>
           </div>
         </div>
@@ -123,10 +181,9 @@ const SeleccionAsientos = () => {
         <span>
           Se realizara un cargo por servicio por cada boleto dentro de la orden
         </span>
-        <h2>Total (IVA incluido):</h2>
-        {/* ${totalBoletos} */}
-        <button>Continuar</button>
-        {/* className={botonActivo ? "activeButton" : "inactiveButton"} */}
+        <h5>Total (IVA incluido): {numberToMoney(boletos.total)}</h5>
+        <button className={botonActivo ? "activeButton" : "inactiveButton"}  onClick={pagoBoletos}>Continuar</button>
+         
       </div>
     </div>
   );

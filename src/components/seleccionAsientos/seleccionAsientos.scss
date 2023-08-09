@@ -7,16 +7,16 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .row-labels{
+    .row-labels {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       margin-left: 40px;
       margin-right: 55px;
-      }
+    }
     .columChair {
       display: flex;
-      .column-labels{
+      .column-labels {
         display: flex;
         flex-direction: column;
         gap: 12px;
@@ -60,18 +60,22 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    background-color: rgba(220, 220, 220, 0.373);
+    border: 2px solid $color-gray-strong;
+    border-radius: 10px;
+    padding: 20px;
     .infpel {
       display: flex;
       gap: 20px;
       figure {
-        width: 100px;
+        width: 120px;
         height: 150px;
         overflow: hidden;
+        border-radius: 5px;
         img {
           width: 100%;
-          height: auto;
-          max-width: 100%;
-          max-height: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
       .deta {
@@ -100,49 +104,71 @@
         background: rgb(16, 24, 183);
       }
     }
-    // .activeButton{
-    //   display: flex;
-    //   height: 35px;
-    //   align-items: center;
-    //   justify-content: center;
-    //   padding-left: 15px;
-    //   padding-right: 15px;
-    //   font-size: 14px;
-    //   line-height: 26px;
-    //   font-weight: 500;
-    //   color: $color-primary;
-    //   background: $color-blue;
-    //   opacity: 1;
-    //   border: none;
-    //   border-radius: 20px;
-    //   cursor: pointer;
-    //   :hover {
-    //     color: $color-primary;
-    //     background: rgb(16, 24, 183);
-    //   }
+    .activeButton{
+      display: flex;
+      height: 35px;
+      align-items: center;
+      justify-content: center;
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 500;
+      color: $color-primary;
+      background: $color-blue;
+      opacity: 1;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      :hover {
+        color: $color-primary;
+        background: rgb(16, 24, 183);
+      }
 
-    // }
-    // .inactiveButton{
-    //     display: flex;
-    //     height: 35px;
-    //     align-items: center;
-    //     justify-content: center;
-    //     padding-left: 15px;
-    //     padding-right: 15px;
-    //     font-size: 14px;
-    //     line-height: 26px;
-    //     font-weight: 500;
-    //     color: $color-primary;
-    //     background: $color-gray;
-    //     opacity: 1;
-    //     border: none;
-    //     border-radius: 20px;
-    //     cursor: pointer;
-    //     :hover {
-    //       color: $color-primary;
-    //       background: rgb(16, 24, 183);
-    //     }
+    }
+    .inactiveButton{
+        display: flex;
+        height: 35px;
+        align-items: center;
+        justify-content: center;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        line-height: 26px;
+        font-weight: 500;
+        color: $color-primary;
+        background: $color-gray;
+        opacity: 1;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        :hover {
+          color: $color-primary;
+          background: rgb(16, 24, 183);
+        }
 
-    //   }
+      }
+  }
+}
+
+@media screen and (max-width: 1030px) {
+  .chair {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 450px;
+    }
+    .chair__right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
   }
 }

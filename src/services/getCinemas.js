@@ -11,3 +11,14 @@ export const getCinemas = async() => {
         return []
     }
 }
+
+export const saveCinema = async(cinema) => {
+    try {
+        const { data } = await axios.post(endpoints.urlCinemas, cinema)
+        return data;
+        
+    } catch (error) {
+        console.log(error);
+        return null
+    }
+}

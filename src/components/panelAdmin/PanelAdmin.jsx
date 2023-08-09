@@ -1,15 +1,22 @@
-import React from 'react'
+import React from "react";
+import Header from "../header/Header";
+import { Outlet, useLocation } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import Header from '../header/Header';
-import { Outlet } from 'react-router-dom';
-const PanelAdmin = () => {
+const PanelAdmin = ({ setGenders }) => {
+
+  const location = useLocation();
+  const path = location.pathname;
 
   return (
- <>
-  <Header />
-  <Outlet />  
- </>
-  )
-}
+    <>
+    {
+      path == "/admin" ? <Header setGenders={setGenders} /> : ""
 
-export default PanelAdmin
+    }
+      <Outlet />
+    </>
+  );
+};
+
+export default PanelAdmin;

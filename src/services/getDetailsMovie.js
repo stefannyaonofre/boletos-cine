@@ -6,6 +6,7 @@ export const getDetailsMovie = async (id) => {
     try {
         const url = endpoints.urlMovie(id);
         const {data} = await axios.get(url);
+        
         const newMovie = {
             id: data.id,
             name: data.title,
@@ -15,8 +16,11 @@ export const getDetailsMovie = async (id) => {
             runtime: data.runtime,
             adult: data.adult,
             gender: data.genres.map(item => item.name),
-            overview: data.overview
+            overview: data.overview,
+            productionCountries: data.production_countries?.map(item => item.name),
+            languages: data.spoken_languages?.map(item => item.name),
         }
+
         return newMovie;
         
     } catch (error) {
