@@ -86,7 +86,6 @@
   &__rightt {
     width: 60%;
     margin-left: 80px;
-    
 
     /* Estilos del componente datepicker */
     .react-datepicker-custom {
@@ -136,8 +135,7 @@
   }
 }
 
-
-.accordion{
+.accordion {
   width: 450px;
 }
 
@@ -186,6 +184,23 @@
         height: 200px;
         margin: 20px;
       }
+    }
+  }
+  .mainAdmin {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 50px 30px;
+    align-items: center;
+    &__leftt {
+      width: 40%;
+      gap: 20px;
+      p {
+        text-align: justify;
+      }
+    }
+    &__rightt {
+      width: 60%;
+      margin-left: 80px;
     }
   }
 }
