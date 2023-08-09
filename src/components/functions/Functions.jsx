@@ -37,10 +37,10 @@ const Functions = ({onClose}) => {
       })
     }
   };
-  const handleClose = () => {
-    setIsFormOpen(false);
-    onclose()
-};
+//   const handleClose = () => {
+//     setIsFormOpen(false);
+//     onclose()
+// };
 
   return (
     <main className="functions d-flex justify-content-center align-items-center vw-100 vh-100">
