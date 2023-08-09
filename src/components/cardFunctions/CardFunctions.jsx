@@ -37,7 +37,7 @@ const CardFunctions = ({ idPelicula, idCinema, onClose }) => {
         Swal.fire(
             "Función No Eliminada",
             "La Función no pudo ser eliminada",
-            "success"
+            "error"
           );
     }
   }
