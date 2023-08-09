@@ -22,3 +22,13 @@ export const saveFunction = async(functions) => {
         return null
     }
 }
+
+export const deleteFunction = async (id) => {
+    try {
+        const { data } = await axios.delete(`${endpoints.urlFunctions}/${id}`);
+        return data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
