@@ -3,7 +3,7 @@ import { getFunctiosMovie } from '../../services/getFunctionsMovie';
 import './cardFunctions.scss'
 import Functions from '../functions/Functions';
 
-const CardFunctions = ({idPelicula, idCinema}) => {
+const CardFunctions = ({idPelicula, idCinema, onClose}) => {
 
     const [horaFunction, setHoraFunction] = useState([])
     const [opened, setOpened] = useState(false)
@@ -22,6 +22,9 @@ const CardFunctions = ({idPelicula, idCinema}) => {
         setOpened(true)
 
     }
+    const handleCloseForm = () => {
+        setOpened(false);
+      };
 
   return (
     <div className='component d-flex justify-content-around'>
@@ -33,7 +36,7 @@ const CardFunctions = ({idPelicula, idCinema}) => {
         }
         </div>
         <div className='component_new'>
-            {opened ? (<Functions />) :(
+            {opened ? (<Functions onClose={handleCloseForm}/>) :(
                 <button type="button" onClick={handleClick} className="btn btn-outline-primary">Nueva Función +</button>
             )}
         

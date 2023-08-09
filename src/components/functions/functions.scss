@@ -1,4 +1,44 @@
 @import "../../styles/style.scss";
-.functions{
+.functions {
+    // position: relative;
+    // z-index: 2;
+    // display: flex;
+    // justify-content: center; 
+    // align-items: center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   .formular{
+    width: 300px;
+   
+    .close {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        margin-left: 100%;
+        & img {
+          width: 26px;
+          height: 26px;
+          fill: #565d6dff; /* neutral-600 */
+        }
+        &:hover {
+          color: #565d6dff; /* neutral-600 */
+          background: #dee1e6ff; /* neutral-300 */
+          cursor: pointer;
+          &:active {
+            color: #565d6dff; /* neutral-600 */
+            background: #cfd2daff; /* neutral-350 */
+          }
+        }
+      }
+
+   }
+   
+ 
 }
