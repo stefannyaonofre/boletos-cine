@@ -16,8 +16,8 @@ import { getCinemas } from "../../services/getCinemas";
 import { Accordion } from "react-bootstrap";
 import { getSalas } from "../../services/getSalas";
 import CardFunctions from "../cardFunctions/CardFunctions";
-
-const Admin = () => {
+import Cinema from "../cinema/Cinema"
+const Admin = ({onClose}) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [showCalendar, setShowCalendar] = useState(false);
   const [user, setUser] = useState({});
@@ -29,6 +29,7 @@ const Admin = () => {
   const [videoMovie, setVideoMovie] = useState("");
   const [cinemas, setCinemas] = useState([]);
   const [salas, setSalas] = useState([]);
+  const [opened, setOpened] = useState(false)
 
   useEffect(() => {
     detailMovie();
@@ -78,7 +79,14 @@ const Admin = () => {
     console.log("Fecha seleccionada:", date.toLocaleDateString("es"));
   };
   const fecha = selectedDate ? selectedDate.toLocaleDateString("es") : null;
+  const handleClick = () => {
+    console.log('hice click')
+    setOpened(true)
 
+}
+const handleCloseForm = () => {
+    setOpened(false);
+  };
   return (
     <>
       <header className="headerAdmin">
@@ -164,7 +172,13 @@ const Admin = () => {
         <section className="mainAdmin__rightt d-flex bg-body-secondary g-10">
           <div className="d-flex justify-content-around align-items-center p-10">
             <span>FUNCIONES POR MULTIPLEX</span>
-            <button type="button" className="btn btn-outline-primary">Nuevo Cinema + </button>
+              {opened ? (<Cinema onClose={handleCloseForm}/>):(
+                <button type="button" 
+                onClick={handleClick}
+                className="btn btn-outline-primary">Nuevo Cinema + </button>
+              )}
+            
+
           </div>
           <div className="d-flex flex-column align-items-center">
           {cinemas?.map((cinema, index) => (
